@@ -1,0 +1,139 @@
+{
+  "analysis_version": "0.3.0",
+  "annotation_status": "Upstream package labels retained; article/package allocation discrepancy remains unresolved",
+  "files": [
+    {
+      "bytes": 164,
+      "path": "additive_design_matrix.csv",
+      "sha256": "9f916c4abeb0ad951c67ad5206dbccc19fbcfad04907894fa10400f6e0b2eda2"
+    },
+    {
+      "bytes": 59,
+      "path": "condition_read_type_counts.csv",
+      "sha256": "888aa768bba5cbd304981d686538dca6ea3a82d9e0c6c89f4195c70948c4dea5"
+    },
+    {
+      "bytes": 737,
+      "path": "correlations_median_ratio.csv",
+      "sha256": "f088b223e5ef02891389a427230e90e02b5bce87c6abfb927da5ef0480cb9161"
+    },
+    {
+      "bytes": 737,
+      "path": "correlations_total_count.csv",
+      "sha256": "63f633b077dc41a3db736b835d8a6adb8577e11616624f1d0811fe2a183343a4"
+    },
+    {
+      "bytes": 36643,
+      "path": "count_totals.png",
+      "sha256": "72dd17b8b7aef9dbe85998f7348b8c098a401f94a1d3dfcc8e8f1e52d6047696"
+    },
+    {
+      "bytes": 1220,
+      "path": "design_diagnostics.json",
+      "sha256": "85140b50395032e3b3e96fe984bedddbe84ac3ed76403aa08a046a286855e420"
+    },
+    {
+      "bytes": 737,
+      "path": "distances_median_ratio.csv",
+      "sha256": "f39c88331cbab991887daae9aafc9e08303510ba7ffb5bcd368489c2424eb601"
+    },
+    {
+      "bytes": 737,
+      "path": "distances_total_count.csv",
+      "sha256": "820738839b820e2854b72de5f4ff8569536a829638f4a93948922cdb59d49608"
+    },
+    {
+      "bytes": 1134,
+      "path": "leave_one_out_stability.csv",
+      "sha256": "073443d93bb0e4a7470f40364d36d66dea0857aecd04f87bb8d0f42446faca45"
+    },
+    {
+      "bytes": 59741,
+      "path": "leave_one_out_stability.png",
+      "sha256": "a7432bf542079d303f192da533f6e98723bebb9ba753371e4383e791a39e7ec9"
+    },
+    {
+      "bytes": 91232,
+      "path": "normalization_comparison.png",
+      "sha256": "e555eb04cf29b67bb0d88bae4cb836006a4f17eb60b3d30bfadc6fc8137f9632"
+    },
+    {
+      "bytes": 81315,
+      "path": "normalization_distances.png",
+      "sha256": "0ece7d43140c902ee0cb1e7d2f05607a6662734af9e525bd1eb7691ec91580c1"
+    },
+    {
+      "bytes": 753,
+      "path": "normalization_factors.csv",
+      "sha256": "8a14fb07ae6c7a959db9c1facbc53e2adc8770a0e820b3c5b31639041e758d6b"
+    },
+    {
+      "bytes": 523,
+      "path": "pca_logcounts.csv",
+      "sha256": "3febccad168f46c1e68dfe7454bb5f2b326916a7af551f96dbb76715e081ddd9"
+    },
+    {
+      "bytes": 62894,
+      "path": "pca_logcounts.png",
+      "sha256": "d19435627a8590220b9e5332a69d8ffdfff947bd6793f94efddb9e31fc5dd347"
+    },
+    {
+      "bytes": 522,
+      "path": "pca_logcpm.csv",
+      "sha256": "6484a2f05ac6e26cc5ecc967a1ab2e897d2e59cb3e61b69414f27e56bb60f26f"
+    },
+    {
+      "bytes": 60894,
+      "path": "pca_logcpm.png",
+      "sha256": "bd2ed207efebd96f2a9d2a5a3a6a435bd1921b2095e86e21be30552a23b90461"
+    },
+    {
+      "bytes": 517,
+      "path": "pca_median_ratio.csv",
+      "sha256": "7ad9afb85e632a4755749bc80efa76ff6c94684decac5ac52deb3554879d7238"
+    },
+    {
+      "bytes": 519,
+      "path": "pca_total_count.csv",
+      "sha256": "f825d3880219a08d485a36436dd319151011ce9d801cb477abb105ab389bb3ce"
+    },
+    {
+      "bytes": 4061,
+      "path": "report.md",
+      "sha256": "a965af2ff252e05d0cf8d1bf73b914ae3e42a24adb7054ce1ab03d5c35c4ab9d"
+    },
+    {
+      "bytes": 737,
+      "path": "sample_correlations.csv",
+      "sha256": "8b934234e85025705bedc1a6da7eeed3db3a6231d545f5a776e8d80fb3cc9411"
+    },
+    {
+      "bytes": 581,
+      "path": "sample_qc.csv",
+      "sha256": "989cb765e6f0cdd5ffc699b618d34ba86c50ebcc16dfe5f028536371a75474c2"
+    },
+    {
+      "bytes": 3543,
+      "path": "summary.json",
+      "sha256": "31e877a82c850a6ce53ba331a3cc470625ac7f20eb24da4b88dee78e09ce049f"
+    }
+  ],
+  "input_sha256": {
+    "UPSTREAM_DESCRIPTION": "e3967a49668b99a7429a23f0419e4ad98f0339057eaca0b519b40631881280e7",
+    "pasilla_gene_counts.tsv": "ea0dafbfcc600559644cfe7dd5cc8de809d631eb64ba3089aaa25c2fa0954dad",
+    "pasilla_sample_annotation.csv": "1844f871ca5d750f41685c73b87bd7dda291ec0d52304c1afb46a17ae88db745"
+  },
+  "samples_in_order": [
+    "untreated1",
+    "untreated2",
+    "untreated3",
+    "untreated4",
+    "treated1",
+    "treated2",
+    "treated3"
+  ],
+  "schema_version": "1.0",
+  "scope": "Byte integrity and sample-label consistency only; not biological validation or a rerun comparison",
+  "status": "complete_package_with_matching_sample_labels",
+  "upstream_commit": "3c91e8df8add3549129e46b7a7a078fda4e2755a"
+}

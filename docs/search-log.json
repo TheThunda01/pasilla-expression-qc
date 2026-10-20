@@ -1,0 +1,335 @@
+{
+  "search_date": "2026-10-20",
+  "scope": "Bounded rapid review of provenance, sample metadata, and result-package reliability for descriptive bulk RNA-seq QC; no differential-expression method selection.",
+  "review_type": "Bounded rapid review, not an exhaustive systematic review",
+  "inclusion_criteria": [
+    "Primary software/methods publications directly relevant to the operational gap",
+    "Official data-provider/software documentation for precise contracts",
+    "Recent publication window 2022-01-01 to 2026-10-20, with clearly labeled foundational lookup"
+  ],
+  "exclusion_criteria": [
+    "Disease or organism applications without a direct reliability-method contribution",
+    "Broader pipelines or single-cell workflows outside scope",
+    "Preprints excluded from adopted evidence in this round"
+  ],
+  "searches": [
+    {
+      "source": "PubMed connector",
+      "label": "broad",
+      "query": "(\"RNA-seq\"[Title/Abstract]) AND (\"quality control\"[Title/Abstract]) AND (metadata[Title/Abstract] OR reproducibility[Title/Abstract])",
+      "query_translation": "\"RNA-seq\"[Title/Abstract] AND \"quality control\"[Title/Abstract] AND (\"metadata\"[Title/Abstract] OR \"reproducibility\"[Title/Abstract]) AND 2022/01/01:2026/10/20[Date - Publication]",
+      "date_type": "publication",
+      "date_from": "2022/01/01",
+      "date_to": "2026/10/20",
+      "sort": "publication_date",
+      "max_results": 10,
+      "offset": 0,
+      "total_results": 37,
+      "returned_count": 10,
+      "returned_pmids": [
+        "41796996",
+        "42595979",
+        "42051034",
+        "42308055",
+        "42239107",
+        "42079050",
+        "41993886",
+        "41636474",
+        "41539304",
+        "41947412"
+      ],
+      "next_offset": 10,
+      "has_more": true,
+      "pagination_limited": false,
+      "selection_limit": "First returned page only; broader result set was not exhaustively screened",
+      "warnings": []
+    },
+    {
+      "source": "PubMed connector",
+      "label": "narrow",
+      "query": "\"RNA-seq\"[Title/Abstract] AND (\"sample metadata\"[Title/Abstract] OR \"data provenance\"[Title/Abstract])",
+      "query_translation": "\"RNA-seq\"[Title/Abstract] AND (\"sample metadata\"[Title/Abstract] OR \"data provenance\"[Title/Abstract]) AND 2022/01/01:2026/10/20[Date - Publication]",
+      "date_type": "publication",
+      "date_from": "2022/01/01",
+      "date_to": "2026/10/20",
+      "sort": "publication_date",
+      "max_results": 10,
+      "offset": 0,
+      "total_results": 6,
+      "returned_count": 6,
+      "returned_pmids": [
+        "42595979",
+        "42051034",
+        "39786428",
+        "37941147",
+        "36389425",
+        "34534350"
+      ],
+      "next_offset": null,
+      "has_more": false,
+      "pagination_limited": false,
+      "selection_limit": "First returned page only; broader result set was not exhaustively screened",
+      "warnings": []
+    },
+    {
+      "source": "PubMed connector",
+      "label": "known_title",
+      "query": "\"Conservation of an RNA regulatory map between Drosophila and mammals\"[Title]",
+      "query_translation": "\"Conservation of an RNA regulatory map between Drosophila and mammals\"[Title]",
+      "date_type": "not restricted (foundational lookup)",
+      "date_from": null,
+      "date_to": null,
+      "sort": "relevance",
+      "max_results": 5,
+      "offset": 0,
+      "total_results": 0,
+      "returned_count": 0,
+      "returned_pmids": [],
+      "next_offset": null,
+      "has_more": false,
+      "pagination_limited": false,
+      "selection_limit": "First returned page only; broader result set was not exhaustively screened",
+      "warnings": [
+        "\"Conservation of an RNA regulatory map between Drosophila and mammals\"[Title]",
+        "No items found."
+      ]
+    }
+  ],
+  "screening": [
+    {
+      "search": "broad",
+      "pmid": "41796996",
+      "title": "OralDB: A Transcriptomic Resource for Mechanistic Exploration in Oral Diseases.",
+      "doi": "10.1177/00220345251410498",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "42595979",
+      "title": "Transcriptome datasets of four freshwater bacterial isolates grown under iron-replete and iron-limited conditions.",
+      "doi": "10.1186/s12863-026-01477-9",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "42051034",
+      "title": "ChIP-Atlas 2025 update: 10-year anniversary of a data-mining platform for exploring epigenomic landscape.",
+      "doi": "10.1093/nar/gkag378",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "42308055",
+      "title": "Updates and validation of the Compi RNA-seq pipeline with a case study in Alzheimer's disease.",
+      "doi": "10.1515/jib-2025-0064",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "42239107",
+      "title": "A harmonized single-cell RNA-seq atlas of human localized and metastatic prostate cancers and benign tissues.",
+      "doi": "10.64898/2026.05.18.725966",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "42079050",
+      "title": "AutoRNAseq: Automated Bulk RNA-seq Analysis Pipeline.",
+      "doi": "10.64898/2026.04.21.719844",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "41993886",
+      "title": "SnakeAltPromoter Facilitates Differential Alternative Promoter Analysis.",
+      "doi": "10.34133/csbj.0033",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "41636474",
+      "title": "A Statistical Framework for Measuring Reproducibility and Replicability of High-Throughput Experiments From Multiple Sources.",
+      "doi": "10.1002/sim.70354",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "41539304",
+      "title": "Epigenomic, transcriptomic, and proteomic characterization of breast cancer cell line reference samples.",
+      "doi": "10.1016/j.crmeth.2025.101276",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "broad",
+      "pmid": "41947412",
+      "title": "NEXT-scASV: a Nextflow pipeline for allele-specific variant calling from single-cell RNA-seq data.",
+      "doi": "10.1093/gigascience/giag042",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "narrow",
+      "pmid": "42595979",
+      "title": "Transcriptome datasets of four freshwater bacterial isolates grown under iron-replete and iron-limited conditions.",
+      "doi": "10.1186/s12863-026-01477-9",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "narrow",
+      "pmid": "42051034",
+      "title": "ChIP-Atlas 2025 update: 10-year anniversary of a data-mining platform for exploring epigenomic landscape.",
+      "doi": "10.1093/nar/gkag378",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "narrow",
+      "pmid": "39786428",
+      "title": "SampleExplorer: using language models to discover relevant transcriptome data.",
+      "doi": "10.1093/bioinformatics/btae759",
+      "decision": "include",
+      "reason": "Relevant primary software study addressing metadata/logging or FASTQ preprocessing context",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "narrow",
+      "pmid": "37941147",
+      "title": "ZEBRA: a hierarchically integrated gene expression atlas of the murine and human brain at single-cell resolution.",
+      "doi": "10.1093/nar/gkad990",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "narrow",
+      "pmid": "36389425",
+      "title": "The seeker R package: simplified fetching and processing of transcriptome data.",
+      "doi": "10.7717/peerj.14372",
+      "decision": "include",
+      "reason": "Relevant primary software study addressing metadata/logging or FASTQ preprocessing context",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "search": "narrow",
+      "pmid": "34534350",
+      "title": "TISMO: syngeneic mouse tumor database to model tumor immunity and immunotherapy response.",
+      "doi": "10.1093/nar/gkab804",
+      "decision": "exclude",
+      "reason": "Not directly about this repository's bounded reliability problem; disease-specific data/application, single-cell resource, preprint, or broader pipeline outside scope",
+      "screening_access": "Title-first relevance screen; abstracts appraised for included candidates, not full-paper appraisal."
+    },
+    {
+      "pmid": "20921232",
+      "decision": "include",
+      "reason": "Known foundational source retrieved directly after zero-hit exact-title query",
+      "screening_access": "Citation and abstract"
+    }
+  ],
+  "supplementary_searches": [
+    {
+      "source": "Direct official resource retrieval",
+      "date": "2026-10-20",
+      "total_search_results": null,
+      "total_count_known": false,
+      "screened_resources": 1,
+      "url": "https://github.com/hugheylab/seeker/tree/ec636b2d55ffa93265cfb3150df5d9295c35f07c",
+      "accessed_files": [
+        "README.md",
+        "DESCRIPTION"
+      ],
+      "commit": "ec636b2d55ffa93265cfb3150df5d9295c35f07c",
+      "version": "1.1.6",
+      "license": "MIT + file LICENSE",
+      "scope": "Logging/interface concept only; no copied code"
+    },
+    {
+      "source": "Direct official resource retrieval",
+      "date": "2026-10-20",
+      "total_search_results": null,
+      "total_count_known": false,
+      "screened_resources": 1,
+      "url": "https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html",
+      "version": "pasilla 1.40.0",
+      "document_date": "2026-05-05",
+      "scope": "Sample annotation table and creation context"
+    }
+  ],
+  "retrievals": [
+    {
+      "tool": "PubMed get_articles",
+      "pmids": [
+        "36389425",
+        "39786428",
+        "20921232"
+      ],
+      "purpose": "Citation/abstract verification",
+      "missing": []
+    },
+    {
+      "tool": "PubMed get_full_text_articles",
+      "pmc_ids": [
+        "PMC9648347"
+      ],
+      "offsets": [
+        0
+      ],
+      "max_chars_per_article": [
+        16000
+      ],
+      "final_truncated": false
+    },
+    {
+      "tool": "PubMed convert_article_ids",
+      "id_type": "doi",
+      "input": [
+        "10.1101/gr.108662.110"
+      ],
+      "output_pmids": [
+        "20921232"
+      ]
+    }
+  ],
+  "limits": [
+    "Broad searches were capped at the first 10 records sorted by publication date; unscreened later pages remain",
+    "No citation-network, Embase, or systematic grey-literature search",
+    "PubMed publication-date filtering may include early-online records assigned to a later issue"
+  ],
+  "cited_publication_pmids": [
+    "36389425",
+    "39786428",
+    "20921232"
+  ],
+  "baseline_head": "5ef2c14c815ff6c1da5d8e40c794ea2d2bbe8f7a",
+  "baseline_check": "All files in root advancement-baseline.json snapshot matched local Git blob hashes before edits.",
+  "counts": {
+    "broad_total": 37,
+    "broad_screened": 10,
+    "narrow_total": 6,
+    "narrow_screened": 6,
+    "unique_topic_records_screened": 14,
+    "cited_topic_publications": 2,
+    "cited_foundational_publications": 1
+  }
+}

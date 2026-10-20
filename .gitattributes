@@ -1,0 +1,4 @@
+*.csv -text
+*.tsv -text
+*.png -text
+data/UPSTREAM_DESCRIPTION -text

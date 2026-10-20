@@ -1,0 +1,24 @@
+{
+  "retrieved": "2026-10-20",
+  "upstream_commit": "3c91e8df8add3549129e46b7a7a078fda4e2755a",
+  "files": [
+    {
+      "path": "pasilla_gene_counts.tsv",
+      "sha256": "ea0dafbfcc600559644cfe7dd5cc8de809d631eb64ba3089aaa25c2fa0954dad",
+      "source": "https://raw.githubusercontent.com/bioconductor-source/pasilla/3c91e8df8add3549129e46b7a7a078fda4e2755a/inst/extdata/pasilla_gene_counts.tsv",
+      "bytes": 498373
+    },
+    {
+      "path": "pasilla_sample_annotation.csv",
+      "sha256": "1844f871ca5d750f41685c73b87bd7dda291ec0d52304c1afb46a17ae88db745",
+      "source": "https://raw.githubusercontent.com/bioconductor-source/pasilla/3c91e8df8add3549129e46b7a7a078fda4e2755a/inst/extdata/pasilla_sample_annotation.csv",
+      "bytes": 527
+    },
+    {
+      "path": "UPSTREAM_DESCRIPTION",
+      "sha256": "e3967a49668b99a7429a23f0419e4ad98f0339057eaca0b519b40631881280e7",
+      "source": "https://raw.githubusercontent.com/bioconductor-source/pasilla/3c91e8df8add3549129e46b7a7a078fda4e2755a/DESCRIPTION",
+      "bytes": 1264
+    }
+  ]
+}

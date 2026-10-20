@@ -1,0 +1,8 @@
+sample,file,condition,type,count_table_total,zero_fraction_all_genes,genes_with_positive_count
+untreated1,untreated1fb,untreated,single-read,13972512,0.278786218,10529
+untreated2,untreated2fb,untreated,single-read,21911438,0.235975067,11154
+untreated3,untreated3fb,untreated,paired-end,8358426,0.301185013,10202
+untreated4,untreated4fb,untreated,paired-end,9841335,0.295773683,10281
+treated1,treated1fb,treated,single-read,18670279,0.232276183,11208
+treated2,treated2fb,treated,paired-end,9571826,0.292896774,10323
+treated3,treated3fb,treated,paired-end,10343856,0.292280293,10332

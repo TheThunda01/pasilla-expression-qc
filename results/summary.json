@@ -1,0 +1,42 @@
+{
+  "analysis": "Descriptive QC only; no differential expression or causal inference",
+  "condition_counts": {
+    "treated": 3,
+    "untreated": 4
+  },
+  "filter": {
+    "minimum_count": 10,
+    "minimum_samples": 3
+  },
+  "genes_after_filter": 8148,
+  "genes_before_filter": 14599,
+  "input_sha256": {
+    "UPSTREAM_DESCRIPTION": "e3967a49668b99a7429a23f0419e4ad98f0339057eaca0b519b40631881280e7",
+    "pasilla_gene_counts.tsv": "ea0dafbfcc600559644cfe7dd5cc8de809d631eb64ba3089aaa25c2fa0954dad",
+    "pasilla_sample_annotation.csv": "1844f871ca5d750f41685c73b87bd7dda291ec0d52304c1afb46a17ae88db745"
+  },
+  "normalization": "CPM using unfiltered count-table totals, then log2(CPM + 1)",
+  "package_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "pca": {
+    "center_genes": true,
+    "logcounts_explained_variance_ratio": [
+      0.7959316704971239,
+      0.10601105882354268
+    ],
+    "logcpm_explained_variance_ratio": [
+      0.4039121747999009,
+      0.323658835782084
+    ],
+    "scale_genes": false
+  },
+  "read_type_counts": {
+    "paired-end": 4,
+    "single-read": 3
+  },
+  "samples": 7,
+  "upstream_commit": "3c91e8df8add3549129e46b7a7a078fda4e2755a"
+}

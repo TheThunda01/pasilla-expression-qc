@@ -1,0 +1,8 @@
+sample,file,condition,type,PC1,PC2
+untreated1,untreated1fb,untreated,single-read,-18.368371881,19.231673292
+untreated2,untreated2fb,untreated,single-read,-77.843029642,14.291627805
+untreated3,untreated3fb,untreated,paired-end,58.441464025,16.490789953
+untreated4,untreated4fb,untreated,paired-end,40.099846935,14.945433662
+treated1,treated1fb,treated,single-read,-69.794366394,-20.203452162
+treated2,treated2fb,treated,paired-end,38.582343556,-22.137057841
+treated3,treated3fb,treated,paired-end,28.882113401,-22.619014709

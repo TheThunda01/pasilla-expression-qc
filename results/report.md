@@ -2,6 +2,19 @@
 
 This run uses 14,599 genes and 7 samples from the pinned public count table. 8,148 genes pass the exploratory filter (at least 10 counts in at least 3 samples).
 
+## Sample design before interpreting the plots
+
+| Condition | Single-read | Paired-end |
+| --- | ---: | ---: |
+| Untreated | 2 | 2 |
+| Treated | 1 | 2 |
+
+The additive design uses an intercept, a treated indicator, and a paired-end indicator. Its rank is **3 of 3 columns**, with residual dimension **4**. Assessment: **Not perfectly confounded: the additive design columns are linearly independent**.
+
+The smallest intended condition/read-type cell contains 1 sample(s). Full rank makes the two coded contrasts algebraically distinguishable; it does not establish adequate power, eliminate other confounding, or validate an additive model. No expression model, treatment effect, or p-value is fitted here. See `additive_design_matrix.csv` and `design_diagnostics.json` for the exact coding and checks.
+
+## Descriptive PCA views
+
 The log2(CPM + 1) PCA assigns 40.4% of variance to PC1 and 32.4% to PC2. The log2(count + 1) sensitivity analysis assigns 79.6% and 10.6%, respectively. These percentages describe two different transformed data matrices; they are not an accuracy comparison.
 
 ![PCA after total-count normalization](pca_logcpm.png)

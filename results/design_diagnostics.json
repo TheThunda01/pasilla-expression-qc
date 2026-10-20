@@ -1,0 +1,43 @@
+{
+  "all_design_cells_observed": true,
+  "all_intended_levels_observed": true,
+  "assessment": "Not perfectly confounded: the additive design columns are linearly independent",
+  "cell_counts": {
+    "treated": {
+      "paired-end": 2,
+      "single-read": 1
+    },
+    "untreated": {
+      "paired-end": 2,
+      "single-read": 2
+    }
+  },
+  "column_count": 3,
+  "columns": [
+    "intercept",
+    "condition_treated",
+    "type_paired_end"
+  ],
+  "equal_cell_counts": false,
+  "formula": "intercept + indicator(condition=treated) + indicator(type=paired-end)",
+  "full_column_rank": true,
+  "minimum_cell_size": 1,
+  "missing_levels": {
+    "condition": [],
+    "read_type": []
+  },
+  "model_fitted": false,
+  "perfect_confounding": false,
+  "rank": 3,
+  "reference_levels": {
+    "condition": "untreated",
+    "read_type": "single-read"
+  },
+  "residual_dimension": 4,
+  "samples": 7,
+  "warnings": [
+    "Matrix rank is an algebraic check, not evidence for a treatment effect or adequate statistical power.",
+    "At least one condition/read-type cell contains fewer than two samples, including any empty cell.",
+    "This is a small sample set; model assumptions and uncertainty require separate evaluation."
+  ]
+}

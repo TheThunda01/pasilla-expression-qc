@@ -2,14 +2,17 @@
 
 **[Start here: project background, purpose, and key themes](docs/project-context.md).**
 
+For a deeper explanation, read **[the biology and analysis concepts](docs/biology-and-concepts.md)**.
+
 Before interpreting an expression experiment, I want to know whether the sample labels line up, how much the count totals vary, and whether a simple transformation changes the picture. This small project makes those checks visible using public Drosophila RNA-seq counts.
 
-**Status: working educational analysis, version 0.2.0.** The inputs are real public data; this is a descriptive reanalysis, not a new biological finding or a reproduction of the original splicing study. It runs locally without downloading data after the Python dependencies are installed.
+**Status: working educational analysis, version 0.3.0.** The inputs are real public data; this is a descriptive reanalysis, not a new biological finding or a reproduction of the original splicing study. It runs locally without downloading data after the Python dependencies are installed.
 
 ## What you can explore
 
 - Validate the count matrix and align the sample annotation by identifier rather than row order.
 - Compare count-table totals, zero fractions, and numbers of detected genes across samples.
+- Inspect condition-by-read-type cell counts and the rank of the explicitly coded additive sample design before interpreting the plots.
 - View sample PCA on log2(CPM + 1), with condition shown by color and read type by shape.
 - Compare that view with PCA on log2(count + 1), using the same genes in both analyses.
 - Compare total-count and median-ratio normalization with the same reference depth and logarithm offset, then inspect the resulting sample distances and correlations.

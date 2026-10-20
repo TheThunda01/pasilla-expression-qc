@@ -1,6 +1,6 @@
 # Sources, implementation, and attribution
 
-The source review for version 0.2.0 was completed on **2026-10-20**. The distinction below matters: reading a method's documentation is not the same as running or validating that software.
+The source review for version 0.3.0 was refreshed on **2026-10-20**. The distinction below matters: reading a method's documentation is not the same as running or validating that software.
 
 | Source | What it supports here | What this repository does with it |
 | --- | --- | --- |
@@ -11,5 +11,7 @@ The source review for version 0.2.0 was completed on **2026-10-20**. The distinc
 | [Schönemann (1966)](https://doi.org/10.1007/BF02289451) | Orthogonal Procrustes alignment via singular value decomposition. | Independently implements the SVD solution after centering and unit-Frobenius scaling, allowing reflection as well as rotation. This is a descriptive geometry calculation, not a validated biological QC threshold. |
 
 The original experiment and derived data remain attributed in [the data notes](../data/README.md). Original Python code and documentation use this repository's MIT license. Upstream data and their preserved license information retain their own terms. No data have been silently replaced or relabeled as newly collected observations.
+
+For the biology explanation and design check, the original paper was read through [its PMC full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC3032923/), alongside the [current NCBI `ps` gene record](https://www.ncbi.nlm.nih.gov/gene/44258), the [pasilla data-creation vignette](https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html), and the DESeq2 vignette's section on non-full-rank model matrices. The package labels define the descriptive analysis; the article/package allocation discrepancy is reported in the data notes rather than silently reconciled.
 
 The local environment contains no R executable. Accordingly, this version makes no claim of a tested R/Bioconductor analysis. Adding DESeq2 would require an executable, tested workflow with an explicit design, an environment record, and an interpretation of the resulting model diagnostics; a code snippet alone would not supply that evidence.

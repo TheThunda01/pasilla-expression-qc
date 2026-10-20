@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 
 from sensitivity import principal_components, run_sensitivity
+from design import inspect_design
 
 ROOT = Path(__file__).resolve().parent
 MIN_COUNT = 10
@@ -142,6 +143,10 @@ def run(data_dir: Path, out: Path) -> dict:
     scores, ratios = principal_components(log_cpm.T)
     raw_scores, raw_ratios = principal_components(log_raw.T)
     out.mkdir(parents=True, exist_ok=True)
+    cross, design_matrix, design = inspect_design(metadata)
+    cross.to_csv(out / "condition_read_type_counts.csv")
+    design_matrix.to_csv(out / "additive_design_matrix.csv")
+    (out / "design_diagnostics.json").write_text(json.dumps(design, indent=2, sort_keys=True) + "\n")
     sensitivity = run_sensitivity(counts, keep.to_numpy(), metadata, out)
     qc = metadata.copy()
     qc.index.name = "sample"
@@ -169,7 +174,8 @@ def run(data_dir: Path, out: Path) -> dict:
     plt.close(fig)
     summary = {
         "analysis": "Descriptive QC only; no differential expression or causal inference",
-        "analysis_version": "0.2.0",
+        "analysis_version": "0.3.0",
+        "design_diagnostics": design,
         "normalization_sensitivity": sensitivity,
         "genes_before_filter": int(len(counts)), "genes_after_filter": int(keep.sum()),
         "samples": int(counts.shape[1]),
@@ -188,6 +194,19 @@ def run(data_dir: Path, out: Path) -> dict:
     report = f"""# Pasilla expression QC: example run
 
 This run uses {len(counts):,} genes and {counts.shape[1]} samples from the pinned public count table. {keep.sum():,} genes pass the exploratory filter (at least {MIN_COUNT} counts in at least {MIN_SAMPLES} samples).
+
+## Sample design before interpreting the plots
+
+| Condition | Single-read | Paired-end |
+| --- | ---: | ---: |
+| Untreated | {int(cross.loc['untreated', 'single-read'])} | {int(cross.loc['untreated', 'paired-end'])} |
+| Treated | {int(cross.loc['treated', 'single-read'])} | {int(cross.loc['treated', 'paired-end'])} |
+
+The additive design uses an intercept, a treated indicator, and a paired-end indicator. Its rank is **{design['rank']} of {design['column_count']} columns**, with residual dimension **{design['residual_dimension']}**. Assessment: **{design['assessment']}**.
+
+The smallest intended condition/read-type cell contains {design['minimum_cell_size']} sample(s). Full rank makes the two coded contrasts algebraically distinguishable; it does not establish adequate power, eliminate other confounding, or validate an additive model. No expression model, treatment effect, or p-value is fitted here. See `additive_design_matrix.csv` and `design_diagnostics.json` for the exact coding and checks.
+
+## Descriptive PCA views
 
 The log2(CPM + 1) PCA assigns {ratios[0]:.1%} of variance to PC1 and {ratios[1]:.1%} to PC2. The log2(count + 1) sensitivity analysis assigns {raw_ratios[0]:.1%} and {raw_ratios[1]:.1%}, respectively. These percentages describe two different transformed data matrices; they are not an accuracy comparison.
 

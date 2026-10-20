@@ -16,6 +16,12 @@ class FullPublicDataPipeline(unittest.TestCase):
             summary = analysis.run(analysis.ROOT / 'data', out)
             self.assertEqual(summary['genes_after_filter'], 8148)
             self.assertEqual(summary['samples'], 7)
+            design = summary['design_diagnostics']
+            self.assertEqual(design['rank'], 3)
+            self.assertEqual(design['residual_dimension'], 4)
+            self.assertFalse(design['perfect_confounding'])
+            self.assertEqual(design['cell_counts']['treated']['single-read'], 1)
+            self.assertEqual(pd.read_csv(out / 'additive_design_matrix.csv', index_col=0).shape, (7, 3))
             factors = pd.read_csv(out / 'normalization_factors.csv')
             for field in ['total_count_factor', 'median_ratio_factor']:
                 self.assertAlmostEqual(float(np.exp(np.log(factors[field]).mean())), 1, places=8)

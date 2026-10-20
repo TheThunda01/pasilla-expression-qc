@@ -14,6 +14,14 @@ The TSV parser requires unique sample names and gene identifiers, a rectangular 
 
 The annotation's `file` field ends in `fb`. For this dataset only, removing that trailing suffix maps values such as `treated1fb` to the count column `treated1`. The program checks that the resulting names are unique and match the count columns exactly, then reorders metadata to the count-column order. It retains the original `file` name in the output. Condition and read-type labels must match the known annotation categories.
 
+## Inspect the sample design
+
+`design.py` produces a condition-by-read-type table and an explicitly reference-coded additive matrix. The reference categories are `untreated` and `single-read`; the three columns are an intercept, `condition_treated`, and `type_paired_end`. Intended levels remain fixed if a subset omits a category, making missing contrasts visible rather than silently discarding them.
+
+Matrix rank uses NumPy's singular-value-based rank calculation. With both levels of both binary factors observed, rank deficiency indicates that the two annotations are perfectly confounded for this additive design. If a level is absent, the result instead reports that the intended contrasts cannot both be assessed. Rank three means the columns are independent, not that any effect is significant or that a model is scientifically adequate. The reported residual dimension is `number of samples - rank`; no residual variance or p-value is estimated.
+
+For the bundled annotation, all four cells are observed, but the treated/single-read cell has only one sample. The matrix has rank three and residual dimension four. Condition and read type are not perfectly confounded; their allocation is nevertheless uneven. These checks mirror the design-identifiability concern in the [official DESeq2 guidance](https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#model-matrix-not-full-rank). They do not adjust the PCA for read type or fit an expression model.
+
 ## Count summaries
 
 For each sample, `count_table_total` is the sum of its supplied gene counts, `zero_fraction_all_genes` is the fraction of rows with zero counts, and `genes_with_positive_count` is the number of rows with a positive count. The total is not the original number of sequenced reads or an estimate of absolute RNA abundance. Gene counts also should not be interpreted as directly comparable absolute expression levels across genes of different lengths.
@@ -80,6 +88,9 @@ This workflow produces no p-values, gene-level effect estimates, pathway claims,
 | `pca_logcounts.csv` | Per-sample PC1 and PC2 coordinates after log2(count + 1). |
 | `sample_correlations.csv` | Sample Pearson correlations across retained log2(CPM + 1) gene values. |
 | `summary.json` | Dimensions, settings, variance ratios, input hashes and package versions. |
+| `condition_read_type_counts.csv` | Sample counts in each intended condition/read-type combination. |
+| `additive_design_matrix.csv` | The exact three-column reference-coded sample matrix. |
+| `design_diagnostics.json` | Matrix rank, missing levels, residual dimension, and interpretation warnings; no fitted model. |
 | `normalization_factors.csv` | Centered total-count and median-ratio factors, their ratio, and largest-gene fraction. |
 | `pca_total_count.csv`, `pca_median_ratio.csv` | Coordinates from the comparison at a common count scale. |
 | `distances_total_count.csv`, `distances_median_ratio.csv` | Root-mean-square sample distances over retained transformed genes. |

@@ -1,5 +1,6 @@
 {
   "analysis": "Descriptive QC only; no differential expression or causal inference",
+  "analysis_version": "0.2.0",
   "condition_counts": {
     "treated": 3,
     "untreated": 4
@@ -16,6 +17,38 @@
     "pasilla_sample_annotation.csv": "1844f871ca5d750f41685c73b87bd7dda291ec0d52304c1afb46a17ae88db745"
   },
   "normalization": "CPM using unfiltered count-table totals, then log2(CPM + 1)",
+  "normalization_sensitivity": {
+    "between_method_procrustes_residual": 0.05475171213483874,
+    "factor_ratio_range": [
+      0.9470770761381371,
+      1.0862272597918667
+    ],
+    "leave_one_out_policy": "Fixed full-data PCA gene set and reference depth; re-estimate factors on remaining samples",
+    "leave_one_out_residuals": {
+      "median_ratio": {
+        "largest_change_omitted_sample": "treated1",
+        "maximum": 0.21865979139733085,
+        "minimum": 0.0447691358153185
+      },
+      "total_count": {
+        "largest_change_omitted_sample": "treated1",
+        "maximum": 0.23299123838054916,
+        "minimum": 0.036364402500896294
+      }
+    },
+    "pca_variance_fractions": {
+      "median_ratio": [
+        0.3799451244955132,
+        0.3061787578228696
+      ],
+      "total_count": [
+        0.3665058862134918,
+        0.32758572496783733
+      ]
+    },
+    "positive_reference_genes": 9063,
+    "reference_depth": 12457236.462838659
+  },
   "package_versions": {
     "matplotlib": "3.10.8",
     "numpy": "2.3.5",

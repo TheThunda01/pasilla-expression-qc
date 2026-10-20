@@ -19,6 +19,8 @@ from matplotlib.lines import Line2D
 import numpy as np
 import pandas as pd
 
+from sensitivity import principal_components, run_sensitivity
+
 ROOT = Path(__file__).resolve().parent
 MIN_COUNT = 10
 MIN_SAMPLES = 3
@@ -99,23 +101,6 @@ def load_metadata(path: Path, samples: list[str]) -> pd.DataFrame:
     return frame.loc[samples, ["file", "condition", "type"]]
 
 
-def principal_components(sample_by_gene: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Center each gene across samples; retain native log-scale gene variances."""
-    matrix = np.asarray(sample_by_gene, dtype=float)
-    if matrix.ndim != 2 or min(matrix.shape) < 2 or not np.isfinite(matrix).all():
-        raise ValueError("PCA needs a finite matrix with at least two samples and genes")
-    centered = matrix - matrix.mean(axis=0)
-    u, singular, vt = np.linalg.svd(centered, full_matrices=False)
-    total = np.square(singular).sum()
-    if total <= 0:
-        raise ValueError("PCA needs nonzero variation")
-    # Stabilize the arbitrary sign of each component for repeatable output.
-    for i in range(2):
-        if vt[i, np.argmax(np.abs(vt[i]))] < 0:
-            u[:, i] *= -1
-    return u[:, :2] * singular[:2], np.square(singular[:2]) / total
-
-
 def make_pca_plot(scores: np.ndarray, ratios: np.ndarray, metadata: pd.DataFrame,
                   title: str, path: Path) -> None:
     colors = {"treated": "#b34d20", "untreated": "#1b6a8a"}
@@ -157,6 +142,7 @@ def run(data_dir: Path, out: Path) -> dict:
     scores, ratios = principal_components(log_cpm.T)
     raw_scores, raw_ratios = principal_components(log_raw.T)
     out.mkdir(parents=True, exist_ok=True)
+    sensitivity = run_sensitivity(counts, keep.to_numpy(), metadata, out)
     qc = metadata.copy()
     qc.index.name = "sample"
     qc["count_table_total"] = totals.astype(np.int64)
@@ -183,6 +169,8 @@ def run(data_dir: Path, out: Path) -> dict:
     plt.close(fig)
     summary = {
         "analysis": "Descriptive QC only; no differential expression or causal inference",
+        "analysis_version": "0.2.0",
+        "normalization_sensitivity": sensitivity,
         "genes_before_filter": int(len(counts)), "genes_after_filter": int(keep.sum()),
         "samples": int(counts.shape[1]),
         "filter": {"minimum_count": MIN_COUNT, "minimum_samples": MIN_SAMPLES},
@@ -212,6 +200,30 @@ The plots display both condition and read type so potential technical structure 
 ![Count-table totals](count_totals.png)
 
 Count-table totals sum the supplied gene counts. They are not the original total sequenced-read counts. The full numeric results are in `sample_qc.csv`, `sample_correlations.csv`, and `summary.json`.
+"""
+    report += f"""
+
+## Normalization sensitivity with a shared count scale
+
+The new comparison holds the retained genes, reference count depth ({sensitivity['reference_depth']:,.1f}), and +1 offset fixed. It contrasts total-count scaling with an independently implemented median-ratio calculation using {sensitivity['positive_reference_genes']:,} genes positive in all seven samples. The two factor vectors have geometric mean one. Their median-ratio/total-count factor ratios range from {sensitivity['factor_ratio_range'][0]:.3f} to {sensitivity['factor_ratio_range'][1]:.3f}.
+
+![Comparable normalized PCA views](normalization_comparison.png)
+
+The normalized two-dimensional Procrustes residual between the views is {sensitivity['between_method_procrustes_residual']:.4f}. Zero would mean identical plotted geometry after translation, overall scaling, rotation and reflection. There is no universal acceptance threshold, and neither close agreement nor disagreement establishes which normalization is biologically correct.
+
+![Comparable sample distances](normalization_distances.png)
+
+These distances summarize root-mean-square differences over the retained log2 gene profiles. They use all retained genes, rather than only the first two PCs. All samples remain included. The numeric distance and correlation matrices are provided separately for each method.
+
+## How much does one sample influence the PCA picture?
+
+The leave-one-out study refits normalization and PCA after each omission, while holding the original gene set and reference depth fixed. It compares the remaining samples with those same samples in the full-data two-dimensional picture.
+
+![Leave-one-sample-out sensitivity](leave_one_out_stability.png)
+
+For total-count scaling, residuals range from {sensitivity['leave_one_out_residuals']['total_count']['minimum']:.4f} to {sensitivity['leave_one_out_residuals']['total_count']['maximum']:.4f}; the largest change follows omission of `{sensitivity['leave_one_out_residuals']['total_count']['largest_change_omitted_sample']}`. For median-ratio scaling, they range from {sensitivity['leave_one_out_residuals']['median_ratio']['minimum']:.4f} to {sensitivity['leave_one_out_residuals']['median_ratio']['maximum']:.4f}; the largest change follows omission of `{sensitivity['leave_one_out_residuals']['median_ratio']['largest_change_omitted_sample']}`. An influential sample is not thereby an erroneous sample. These are descriptive refits, not cross-validation of a predictive model or evidence of causation.
+
+See `normalization_factors.csv`, `leave_one_out_stability.csv`, and the [methods](../docs/methods.md) for exact definitions and limitations. The older CPM and raw-log views above use different overall count scales; the shared-scale comparison isolates normalization choice more carefully.
 """
     (out / "report.md").write_text(report)
     return summary

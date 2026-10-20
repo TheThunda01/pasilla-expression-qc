@@ -1,0 +1,8 @@
+sample,file,condition,type,total_count_factor,median_ratio_factor,median_to_total_factor_ratio,largest_gene_fraction
+untreated1,untreated1fb,untreated,single-read,1.121638177,1.132979151,1.010111080,0.016614121
+untreated2,untreated2fb,untreated,single-read,1.758932494,1.784677233,1.014636570,0.016444836
+untreated3,untreated3fb,untreated,paired-end,0.670969522,0.646531828,0.963578533,0.015701760
+untreated4,untreated4fb,untreated,paired-end,0.790009488,0.748199876,0.947077076,0.016981030
+treated1,treated1fb,treated,single-read,1.498749667,1.627982744,1.086227260,0.013577730
+treated2,treated2fb,treated,paired-end,0.768374754,0.757735948,0.986154144,0.015293843
+treated3,treated3fb,treated,paired-end,0.830349173,0.828787455,0.998119203,0.015869130

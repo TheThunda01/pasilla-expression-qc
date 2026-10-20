@@ -2,7 +2,7 @@
 
 ## The question
 
-How do seven samples in a published Drosophila expression count table look before formal modeling, and how does total-count normalization change a simple sample-level summary?
+How do seven samples in a published Drosophila expression count table look before formal modeling? How sensitive are the sample summaries to normalization choice and to the inclusion of one sample?
 
 This is an exploratory workflow with fixed choices. It does not estimate a treatment effect. The original experiment and its derived package are described in the [pasilla package](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html) and its [data-creation vignette](https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html).
 
@@ -20,19 +20,54 @@ For each sample, `count_table_total` is the sum of its supplied gene counts, `ze
 
 ## Transformation and PCA
 
-Both PCA views use the same genes: at least 10 counts in at least three samples. This is a simple prespecified exploratory filter, not a test of differential expression or a comprehensive quality threshold.
+Every PCA view uses the same genes: at least 10 counts in at least three samples. This is a simple prespecified exploratory filter, not a test of differential expression or a comprehensive quality threshold.
 
 For the first view, each count is divided by its sample's **unfiltered** count-table total, multiplied by one million, then transformed as `log2(CPM + 1)`. The second view uses `log2(count + 1)` without total-count normalization. Filtering therefore does not change the CPM denominator.
 
 PCA treats samples as observations and retained genes as variables. It centers each gene across samples and uses singular value decomposition. It does not divide genes by their standard deviations. The reported percentage for a component is its squared singular value divided by the sum of squared singular values. Component signs are made reproducible by a fixed loading-sign convention; their signs have no biological meaning.
 
-The accompanying Pearson correlation table uses the log2(CPM + 1) values for the retained genes. High sample correlation is not proof of correct sample identity or experimental quality.
+The original `sample_correlations.csv` uses the log2(CPM + 1) values for the retained genes. The new comparison also exports correlations and distances separately for both normalization methods. High sample correlation is not proof of correct sample identity or experimental quality.
 
-Total-count normalization only rescales sample totals. It does not correct composition bias, read-type differences, or unmeasured technical variation. The `+1` pseudocount and gene filter can influence low-count patterns. [Love et al. (2014)](https://doi.org/10.1186/s13059-014-0550-8) discuss the mean–variance behavior of RNA-seq counts and specialized transformations. This lightweight illustration is not a replacement for those methods.
+Total-count normalization only rescales sample totals. It does not generally resolve composition bias, read-type differences, or unmeasured technical variation. The `+1` pseudocount and gene filter can influence low-count patterns. [Love et al. (2014)](https://doi.org/10.1186/s13059-014-0550-8) discuss the mean–variance behavior of RNA-seq counts and specialized transformations. This lightweight illustration is not a replacement for those methods.
+
+## Compare normalization without changing the count scale
+
+Let `K[i,j]` be the original count for gene `i` in sample `j`, `L[j]` the sum over **all** supplied genes, and `D` the geometric mean of the seven library totals.
+
+The total-count factor is `L[j] / D`. For the median-ratio factor, retain only genes positive in all samples. For each such gene, calculate its mean log count, subtract that mean from each sample's log count, and take the median log ratio within each sample. Exponentiate these medians and rescale the resulting factors to have geometric mean one. The numerator and denominator of a gene ratio therefore refer to the same gene; no gene-length adjustment is attempted. No `+1` is used to estimate the factors.
+
+This follows the log-median convention documented in the current [DESeq2 implementation](source-notes.md). For an even number of reference genes, exponentiating the median of logs is not exactly the same operation as taking an arithmetic median of ratios. The chosen convention is explicit and tested on small examples. The program raises an error if every gene has a zero in at least one sample rather than silently substituting another estimator.
+
+For each factor vector, the comparable exploratory matrix is `log2(K[i,j] / factor[j] + 1)`. Both vectors have geometric mean one, so both normalizations refer to the same overall count depth `D` and the offset has the same count units. The older CPM plot remains available for continuity, but it has a different overall scale; comparing it directly with normalized-count PCA would mix factor differences with pseudocount-scale differences.
+
+Total-count normalization can be sensitive to a minority of highly expressed genes. Median-ratio estimation instead relies on a sufficiently stable central reference across genes; widespread directional shifts can violate that assumption. The papers by [Anders and Huber](https://doi.org/10.1186/gb-2010-11-10-r106) and [Robinson and Oshlack](https://doi.org/10.1186/gb-2010-11-3-r25) motivate this concern. Agreement between the two methods is not independent evidence that either assumption holds, and this dataset has no external absolute-RNA reference that resolves the issue.
+
+`normalization_factors.csv` contains both factors, their ratio, and the largest single-gene fraction of each original library total. The latter is a descriptive composition summary; it is not a contamination score or a quality threshold.
+
+## Distances and correlations
+
+For each method, the sample distance is the root mean square of the difference between two retained log-normalized gene profiles. It equals their Euclidean distance divided by the square root of the number of retained genes. The heatmaps share a color scale and retain the input sample order; no clustering algorithm or reordered dendrogram is implied.
+
+Pearson correlations use the same transformed profiles. A constant profile makes Pearson correlation undefined, so the program stops rather than inventing a value. Both summaries depend on the retained genes and transformation, and neither establishes sample identity, mechanism, or causal response.
+
+## Leave-one-sample-out PCA stability
+
+The second extension measures how much the **displayed two-dimensional sample geometry** changes after omitting a single sample. For each of seven omissions and each normalization method:
+
+1. Keep the full analysis's 8,148-gene PCA set fixed. This isolates sensitivity to sample inclusion; it does not measure sensitivity to repeating feature selection.
+2. Re-estimate size factors from all genes in the six remaining samples. The set positive in every remaining sample can grow; its size is reported for each refit.
+3. Keep the original full-data reference depth `D` fixed. Technically, the centered factor vector is multiplied by the geometric mean of the remaining library totals divided by `D`. This anchors the log-transform offset to the same count scale. For total-count normalization it makes each retained sample's pre-PCA transformed profile invariant to which other sample is omitted.
+4. Center genes again and refit the two-component PCA on the remaining six samples.
+5. Take those same six samples' coordinates from the full-data PCA. Center both coordinate matrices, scale each to unit Frobenius norm, and use SVD to find the orthogonal rotation or reflection minimizing their difference.
+6. Report the Frobenius norm of that aligned difference as `procrustes_residual`.
+
+The alignment follows the orthogonal solution of [Schönemann (1966)](https://doi.org/10.1007/BF02289451). A residual near numerical zero means the two configurations have the same shape after the allowed transformations. Larger values mean a larger change by this definition. There is **no prespecified biological pass/fail cutoff**. Overall scale and orientation are deliberately discarded, so this statistic does not capture every possible change in expression variability. Variance explained by the two refitted PCs is exported separately.
+
+This is neither predictive cross-validation nor a statistical test. An influential sample might reflect ordinary biological or technical heterogeneity, not an error. In particular, `treated1` is the only treated single-read sample. Its omission changes both the sample composition and the available contrast between condition and read type. The workflow reports that sensitivity without declaring the sample unsuitable or proving a condition effect. No sample is automatically removed.
 
 ## What can be concluded
 
-The outputs describe the supplied tables under these analysis settings. Differences between the PCA views demonstrate sensitivity to a transformation choice; they do not establish which view is biologically correct. With seven samples, descriptive patterns need careful interpretation. Both condition and sequencing read type are displayed, but neither is statistically adjusted for here.
+The outputs describe the supplied tables under these analysis settings. Differences between the PCA views demonstrate sensitivity to a transformation choice; they do not establish which view is biologically correct. With seven samples, descriptive patterns need careful interpretation. Both condition and sequencing read type are displayed, but neither is statistically adjusted for here. Library-level scaling does not remove a design covariate, and the grouping of plotted points is not a fitted treatment effect.
 
 This workflow produces no p-values, gene-level effect estimates, pathway claims, mechanism claims, or splicing conclusions. A future inferential analysis would require an explicit design, checks for estimability and confounding, suitable count modeling, and multiple-testing control. That work is a planned extension, not a completed result.
 
@@ -45,6 +80,15 @@ This workflow produces no p-values, gene-level effect estimates, pathway claims,
 | `pca_logcounts.csv` | Per-sample PC1 and PC2 coordinates after log2(count + 1). |
 | `sample_correlations.csv` | Sample Pearson correlations across retained log2(CPM + 1) gene values. |
 | `summary.json` | Dimensions, settings, variance ratios, input hashes and package versions. |
-| `report.md` and PNGs | Human-readable run summary and three generated figures. |
+| `normalization_factors.csv` | Centered total-count and median-ratio factors, their ratio, and largest-gene fraction. |
+| `pca_total_count.csv`, `pca_median_ratio.csv` | Coordinates from the comparison at a common count scale. |
+| `distances_total_count.csv`, `distances_median_ratio.csv` | Root-mean-square sample distances over retained transformed genes. |
+| `correlations_total_count.csv`, `correlations_median_ratio.csv` | Pearson correlations over the same profiles. |
+| `leave_one_out_stability.csv` | Fourteen refits, reference-gene counts, retained-gene counts, variance fractions and Procrustes residuals. |
+| `report.md` and PNGs | Human-readable run summary, original views, normalization comparison, distance heatmaps, and omission-sensitivity plot. |
 
-The tests cover table shape, malformed counts, duplicate identifiers, sample alignment, file-integrity failures, centering, lack of per-gene standardization, and degenerate PCA inputs. They validate these implemented behaviors rather than the scientific truth of the source dataset.
+## Failure modes and verification
+
+The tests cover table shape, malformed counts, duplicate identifiers, sample alignment, file-integrity failures, centering, lack of per-gene standardization, and degenerate PCA inputs. Small synthetic matrices check known sample multipliers, an influential high-count gene, zero-count exclusion from the reference, geometric centering, fixed-depth invariance, hand-calculated distances, and the invariance of Procrustes alignment to translation, scale, rotation and reflection. Other tests confirm that a true shape change is detected and every sample omission is evaluated.
+
+The GitHub Actions workflow runs the tests and the full public-data analysis. These checks validate the implemented numerical behavior and executable workflow rather than the scientific truth of the source dataset. Source verification, dataset checksums, and tested calculations serve different purposes; none substitutes for the others.

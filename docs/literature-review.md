@@ -4,11 +4,19 @@
 
 What small operational check would make a descriptive public RNA-seq reanalysis easier to transfer and inspect without adding unsupported inference? This bounded review focused on sample metadata, provenance, and reproducible result packaging. It did not reassess normalization performance across experiments or conduct a complete systematic review.
 
+### Round 2 update — 2026-10-20
+
+This same-day follow-up asks how to compare numerical reruns while keeping sample identities and method settings exact. It is an additional implementation scope, not a new surveillance date or a repeat of the broad literature review.
+
 ## Search record
 
 Search date: **2026-10-20**. The [machine-readable log](search-log.json) records exact PubMed queries, date filters, sort order, returned identifiers, and screening decisions. The initial recent query returned 37 records; only its first 10, ordered by publication date, were screened. A narrower metadata/provenance query returned six records, all screened. Those pages contain 14 distinct records. Two directly relevant software papers were retained, with an older source-study citation and official documentation added for context. No inference about the 27 unreturned broad-search records is made.
 
 A quoted-title lookup for the foundational paper returned zero; the known DOI was then resolved through the PubMed identifier service and its record retrieved. The seeker paper was read through its complete rights-eligible PMC body. SampleExplorer and the source experiment were appraised from citation/abstract metadata in this round; the original source discrepancy also remains documented in the existing data notes. Supplementary official documentation and repository files were inspected directly. No protected abstract is republished here.
+
+### Round 2 update — 2026-10-20
+
+A narrow PubMed query for computational biology/bioinformatics, floating point, and reproducibility returned **zero records** in the 2022-01-01 to 2026-10-20 publication window. This is not evidence that the subject lacks literature. The engineering decision was instead checked against official Python 3.12 documentation. Exact syntax and the zero-result record are preserved in [search-update-02.json](search-update-02.json); the original search log is unchanged.
 
 ## What the sources support
 
@@ -22,14 +30,36 @@ A quoted-title lookup for the foundational paper returned zero; the known DOI wa
 
 The implementation choice is an engineering judgment informed by those sources: preserving associations between metadata and outputs is useful, while a larger pipeline would not resolve the existing scientific uncertainty. None of the papers validates this new audit tool.
 
+### Round 2 update — 2026-10-20
+
+| Source | Type/access | Actual support | Limit and implementation consequence |
+| --- | --- | --- | --- |
+| [Python 3.12 `math.isclose`](https://docs.python.org/3.12/library/math.html#math.isclose), inspected documentation version 3.12.15 | Official API documentation | Defines comparison using relative and absolute tolerances; nonfinite values require explicit treatment. | Does not prescribe a scientific tolerance. The project declares `rtol=1e-7`, `atol=1e-8`, rejects nonfinite inputs, and tests allowed roundoff versus larger changes. |
+| [Python 3.12 JSON documentation](https://docs.python.org/3.12/library/json.html) | Official API documentation | Describes parsing hooks and default handling of constants and repeated names. | Default parsing is not a scientific schema check. The comparator rejects duplicate keys and nonfinite numbers and compares key/type structure explicitly. |
+
+These are original standard-library checks; no external implementation was copied. The tolerance is an engineering boundary for recorded numerical outputs, not a measure of experimental uncertainty.
+
 ## Changes made
 
 Added `audit_results.py`, six tests, and an example manifest for the existing 23-file package. The audit rejects missing/empty artifacts, changed source fingerprints, incompatible sample order or labels, changed snapshot bytes, and accidental manifest overwrite. The README now uses consistent navigation, with an explicit [practical-use contract](practical-use.md). The original scientific code, source hashes, and checked-in numeric and plot results remain unchanged.
+
+### Round 2 update — 2026-10-20
+
+Added `compare_results.py`, eleven targeted tests, a numerical comparison example, and a CI rerun comparison. It compares 14 CSVs and two JSON files, preserves exact identities and integer counts, records environment-version differences separately, and reports the location of mismatches. The earlier artifact audit remains a separate byte-integrity tool. Original scientific outputs are unchanged.
 
 ## Remaining work
 
 The next useful additions are a tolerance-based numerical comparator and more matrix-level consistency tests. Definitive source-label reconciliation remains separate evidence-gathering work. The audit should not be expanded into a claim of differential-expression readiness while that issue remains unresolved.
 
+### Round 2 update — 2026-10-20
+
+The numerical comparator proposed in round 1 is now implemented. Matrix symmetry/diagonal checks, a second operating-system comparison, and definitive source-label reconciliation remain open; current acceptance criteria are in [practical use](practical-use.md).
+
 ## Limits of this review
 
 One reviewer screened bounded PubMed pages and a small set of official resources. The search was not registered, duplicated, risk-of-bias scored, or exhaustive across databases. The initial query was intentionally narrowed after mostly off-topic returns. Abstract-only access limited appraisal of two publications; repository inspection was limited to the named files. This review supports a modest workflow improvement, not a comparative claim that this tool outperforms existing RNA-seq systems.
+
+### Round 2 update — 2026-10-20
+
+No new biomedical publication was selected from the zero-result query. Official documentation supports API semantics, not empirical validation of the chosen tolerance. This update did not test a second operating system, redo the original experiment, or resolve the source-label discrepancy.
+

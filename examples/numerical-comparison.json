@@ -1,0 +1,53 @@
+{
+  "atol": 1e-08,
+  "criterion": "abs(a-b) <= max(atol, rtol * max(abs(a), abs(b)))",
+  "difference_count": 0,
+  "difference_details_limit": 100,
+  "differences": [],
+  "environment_differences": [],
+  "file_sha256": {
+    "candidate": {
+      "additive_design_matrix.csv": "9f916c4abeb0ad951c67ad5206dbccc19fbcfad04907894fa10400f6e0b2eda2",
+      "condition_read_type_counts.csv": "888aa768bba5cbd304981d686538dca6ea3a82d9e0c6c89f4195c70948c4dea5",
+      "correlations_median_ratio.csv": "f088b223e5ef02891389a427230e90e02b5bce87c6abfb927da5ef0480cb9161",
+      "correlations_total_count.csv": "63f633b077dc41a3db736b835d8a6adb8577e11616624f1d0811fe2a183343a4",
+      "design_diagnostics.json": "85140b50395032e3b3e96fe984bedddbe84ac3ed76403aa08a046a286855e420",
+      "distances_median_ratio.csv": "f39c88331cbab991887daae9aafc9e08303510ba7ffb5bcd368489c2424eb601",
+      "distances_total_count.csv": "820738839b820e2854b72de5f4ff8569536a829638f4a93948922cdb59d49608",
+      "leave_one_out_stability.csv": "073443d93bb0e4a7470f40364d36d66dea0857aecd04f87bb8d0f42446faca45",
+      "normalization_factors.csv": "8a14fb07ae6c7a959db9c1facbc53e2adc8770a0e820b3c5b31639041e758d6b",
+      "pca_logcounts.csv": "3febccad168f46c1e68dfe7454bb5f2b326916a7af551f96dbb76715e081ddd9",
+      "pca_logcpm.csv": "6484a2f05ac6e26cc5ecc967a1ab2e897d2e59cb3e61b69414f27e56bb60f26f",
+      "pca_median_ratio.csv": "7ad9afb85e632a4755749bc80efa76ff6c94684decac5ac52deb3554879d7238",
+      "pca_total_count.csv": "f825d3880219a08d485a36436dd319151011ce9d801cb477abb105ab389bb3ce",
+      "sample_correlations.csv": "8b934234e85025705bedc1a6da7eeed3db3a6231d545f5a776e8d80fb3cc9411",
+      "sample_qc.csv": "989cb765e6f0cdd5ffc699b618d34ba86c50ebcc16dfe5f028536371a75474c2",
+      "summary.json": "31e877a82c850a6ce53ba331a3cc470625ac7f20eb24da4b88dee78e09ce049f"
+    },
+    "reference": {
+      "additive_design_matrix.csv": "9f916c4abeb0ad951c67ad5206dbccc19fbcfad04907894fa10400f6e0b2eda2",
+      "condition_read_type_counts.csv": "888aa768bba5cbd304981d686538dca6ea3a82d9e0c6c89f4195c70948c4dea5",
+      "correlations_median_ratio.csv": "f088b223e5ef02891389a427230e90e02b5bce87c6abfb927da5ef0480cb9161",
+      "correlations_total_count.csv": "63f633b077dc41a3db736b835d8a6adb8577e11616624f1d0811fe2a183343a4",
+      "design_diagnostics.json": "85140b50395032e3b3e96fe984bedddbe84ac3ed76403aa08a046a286855e420",
+      "distances_median_ratio.csv": "f39c88331cbab991887daae9aafc9e08303510ba7ffb5bcd368489c2424eb601",
+      "distances_total_count.csv": "820738839b820e2854b72de5f4ff8569536a829638f4a93948922cdb59d49608",
+      "leave_one_out_stability.csv": "073443d93bb0e4a7470f40364d36d66dea0857aecd04f87bb8d0f42446faca45",
+      "normalization_factors.csv": "8a14fb07ae6c7a959db9c1facbc53e2adc8770a0e820b3c5b31639041e758d6b",
+      "pca_logcounts.csv": "3febccad168f46c1e68dfe7454bb5f2b326916a7af551f96dbb76715e081ddd9",
+      "pca_logcpm.csv": "6484a2f05ac6e26cc5ecc967a1ab2e897d2e59cb3e61b69414f27e56bb60f26f",
+      "pca_median_ratio.csv": "7ad9afb85e632a4755749bc80efa76ff6c94684decac5ac52deb3554879d7238",
+      "pca_total_count.csv": "f825d3880219a08d485a36436dd319151011ce9d801cb477abb105ab389bb3ce",
+      "sample_correlations.csv": "8b934234e85025705bedc1a6da7eeed3db3a6231d545f5a776e8d80fb3cc9411",
+      "sample_qc.csv": "989cb765e6f0cdd5ffc699b618d34ba86c50ebcc16dfe5f028536371a75474c2",
+      "summary.json": "31e877a82c850a6ce53ba331a3cc470625ac7f20eb24da4b88dee78e09ce049f"
+    }
+  },
+  "files_compared": 16,
+  "numeric_values_compared": 394,
+  "rtol": 1e-07,
+  "schema_version": "1.0",
+  "scope": "14 CSVs and 2 JSON files; identities/counts exact, finite floating values tolerant; no PNG comparison or biological validation",
+  "status": "match",
+  "within_tolerance_nonidentical_values": 0
+}

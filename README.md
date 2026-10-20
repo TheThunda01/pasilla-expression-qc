@@ -53,6 +53,17 @@ Check the committed result package with:
 python audit_results.py verify --manifest audits/example-artifacts.json
 ```
 
+### Compare a numerical rerun
+
+For a numerical rerun comparison, keep the original directory intact:
+
+```sh
+python analysis.py --out my-results
+python compare_results.py results my-results --report my-comparison.json
+```
+
+The comparator reports exact schema/identity mismatches and finite numeric differences beyond the declared tolerance. Exit status 0 means agreement, 1 means differences, and 2 means an invalid invocation or report-writing error.
+
 ## Example results
 
 [Read the example report](results/report.md), or open the [sample QC table](results/sample_qc.csv) and [machine-readable summary](results/summary.json).
@@ -75,6 +86,10 @@ The PCA pictures are summaries of the chosen transformed matrices. A cluster is 
 
 Use the [practical-use guide](docs/practical-use.md) to create and verify a snapshot for a new result directory. A byte match is distinct from numerical reproducibility and biological validity. The upstream article/package sample-allocation discrepancy remains unresolved, and this project retains the package labels. No differential-expression or splicing inference is added.
 
+### Numerical comparison
+
+The separate [numerical comparator](docs/practical-use.md) now checks reruns without requiring identical PNG bytes. Its [example report](examples/numerical-comparison.json) records one local reproduction. Agreement with a reference does not establish biological correctness or resolve the annotation discrepancy.
+
 ## Documentation
 
 | Guide | Purpose |
@@ -87,6 +102,7 @@ Use the [practical-use guide](docs/practical-use.md) to create and verify a snap
 | [Practical use](docs/practical-use.md) | Contracts, worked audit, and next improvements |
 | [Literature review](docs/literature-review.md) | Bounded evidence review and implementation rationale |
 | [Search log](docs/search-log.json) | Exact queries, counts, identifiers, and decisions |
+| [Evidence update 02](docs/search-update-02.json) | Targeted same-day follow-up search and decisions |
 
 ## Development and reuse
 

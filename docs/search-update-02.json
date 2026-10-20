@@ -1,0 +1,69 @@
+{
+  "search_date": "2026-10-20",
+  "update_id": "02",
+  "scope": "Round 2 on the same date: tolerance-based comparison of a fixed descriptive RNA-seq result bundle. This is a new implementation scope, not elapsed-time monitoring.",
+  "inclusion_criteria": [
+    "Direct evidence for numerical comparison or file-integrity implementation behavior",
+    "Primary scientific papers only for their studied claim; official documentation for software semantics"
+  ],
+  "exclusion_criteria": [
+    "Unrelated biological applications",
+    "No new biological accuracy or performance claims inferred from implementation documentation"
+  ],
+  "searches": [
+    {
+      "source": "PubMed connector",
+      "query": "(\"computational biology\"[Title/Abstract] OR bioinformatics[Title/Abstract]) AND \"floating point\"[Title/Abstract] AND reproducibility[Title/Abstract]",
+      "query_translation": "(\"computational biology\"[Title/Abstract] OR \"bioinformatics\"[Title/Abstract]) AND \"floating point\"[Title/Abstract] AND \"reproducibility\"[Title/Abstract] AND 2022/01/01:2026/10/20[Date - Publication]",
+      "date_from": "2022/01/01",
+      "date_to": "2026/10/20",
+      "date_type": "publication",
+      "sort": "publication_date",
+      "max_results": 8,
+      "max_abstract_chars": 4000,
+      "offset": 0,
+      "total_results": 0,
+      "returned_count": 0,
+      "retrieved_pmids": [],
+      "next_offset": null,
+      "pagination_limited": false,
+      "warnings": [
+        "No items found."
+      ],
+      "selection_limit": "All returned records in this narrow result set screened; not a comprehensive literature search"
+    }
+  ],
+  "screening": [
+    {
+      "search": "narrow PubMed query",
+      "record_count": 0,
+      "decision": "no_records_returned",
+      "reason": "No publication records were available to screen; official Python documentation appraised separately."
+    }
+  ],
+  "supplementary_resources": [
+    {
+      "url": "https://docs.python.org/3.12/library/math.html#math.isclose",
+      "type": "Official Python documentation",
+      "inspected_version": "3.12.15",
+      "finding": "Finite scalar relative/absolute comparison semantics; project tolerance is a declared engineering choice."
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/json.html",
+      "type": "Official Python documentation",
+      "inspected_version": "3.12.15",
+      "finding": "Decoder hooks allow rejecting nonfinite constants and duplicate keys; no third-party code copied."
+    }
+  ],
+  "retrieved_records": [],
+  "counts": {
+    "pubmed_total_results": 0,
+    "pubmed_records_screened": 0,
+    "new_primary_context_papers": 0
+  },
+  "limits": [
+    "Bounded targeted update with one reviewer; original search-log.json remains unchanged",
+    "No cross-platform validation or independent scientific validation supplied by documentation",
+    "Supplementary direct URL retrieval has no exposed total search-result count"
+  ]
+}

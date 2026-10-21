@@ -185,14 +185,15 @@
         "Retrieval relevance does not authenticate experimental sample labels."
       ],
       "corrections": [
-        "Specified 2025 issue year, with online publication on 26 December 2024 distinguished in the bibliography."
+        "The earlier pass used the 2025 issue year with an incorrect 26 December online date. Publisher and PMC publication metadata rechecked on 2026-10-21 establish 30 December 2024 as online publication and January 2025 as the issue."
       ],
       "journal": "Bioinformatics",
       "volume_issue": "41(1)",
       "pages_or_article": "btae759",
       "pmid": "39786428",
       "alternate_urls": [
-        "https://pubmed.ncbi.nlm.nih.gov/39786428/"
+        "https://pubmed.ncbi.nlm.nih.gov/39786428/",
+        "https://academic.oup.com/bioinformatics/article/41/1/btae759/7934860"
       ]
     },
     {
@@ -374,5 +375,41 @@
       ],
       "corrections": []
     }
-  ]
+  ],
+  "maintenance_review_2026_10_21": {
+    "date": "2026-10-21",
+    "scope": "Targeted checks supporting current claims and maintenance. Earlier reference entries retain their historical access levels; sources not listed here were not newly full-text appraised.",
+    "checks": [
+      {
+        "id": "brooks-2011",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3032923/?report=xml",
+        "access": "full text, Results and Table 1",
+        "finding": "The paper describes four depleted and three untreated cultures; this conflicts with the derived package allocation. No relabeling was performed."
+      },
+      {
+        "id": "geo-gse18508",
+        "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE18nnn/GSE18508/soft/GSE18508_family.soft.gz",
+        "access": "official archive sample metadata",
+        "finding": "GSM461176–GSM461182 contain four untreated and three CG8144 RNAi samples. The wider series contains many other samples. Mapping those accessions to renamed derived count columns was not reconstructed."
+      },
+      {
+        "id": "ncbi-ps",
+        "url": "https://www.ncbi.nlm.nih.gov/gene/44258",
+        "access": "official Entrez Gene XML",
+        "finding": "Gene 44258 has symbol ps, description pasilla, and CG8144 among synonyms."
+      },
+      {
+        "id": "pasilla-vignette",
+        "url": "https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html",
+        "access": "official vignette",
+        "finding": "The vignette describes three knockdown and four untreated replicates, consistent with the pinned package. Its current version is separate from the pinned input revision."
+      },
+      {
+        "id": "sampleexplorer-2025",
+        "url": "https://academic.oup.com/bioinformatics/article/41/1/btae759/7934860",
+        "access": "publisher issue/date metadata and PMC publication header",
+        "finding": "The publisher lists online publication 30 December 2024 and volume41 issue1 January2025. Corrected the earlier 26 December online date while retaining the justified 2025 issue-year citation. Methods and performance were not newly appraised."
+      }
+    ]
+  }
 }

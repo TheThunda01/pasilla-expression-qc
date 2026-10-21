@@ -2,3 +2,6 @@
 *.tsv -text
 *.png -text
 data/UPSTREAM_DESCRIPTION -text
+# Artifact manifests hash exact bytes, including JSON/Markdown line endings.
+results/** -text
+audits/*.json -text

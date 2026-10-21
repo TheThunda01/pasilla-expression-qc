@@ -84,7 +84,7 @@ The PCA pictures are summaries of the chosen transformed matrices. A cluster is 
 
 ## Practical use and limitations
 
-Use the [practical-use guide](docs/practical-use.md) to create and verify a snapshot for a new result directory. A byte match is distinct from numerical reproducibility and biological validity. The upstream article/package sample-allocation discrepancy remains unresolved, and this project retains the package labels. No differential-expression or splicing inference is added.
+Use the [practical-use guide](docs/practical-use.md) to create and verify a snapshot for a new result directory. A byte match is distinct from numerical reproducibility and biological validity. The [source follow-up](docs/review-2026-10-21.md#source-reconciliation) found archive metadata supporting the package's allocation, while the article text differs; exact mapping to the derived count columns remains unaudited. This project retains the package labels. No differential-expression or splicing inference is added.
 
 ### Numerical comparison
 
@@ -102,6 +102,7 @@ The separate [numerical comparator](docs/practical-use.md) checks reruns without
 | [Assumptions](docs/assumptions.md) | Rationale, checks, and consequences of material assumptions |
 | [Reference audit](docs/reference-audit.json) | Source-by-source verification and access limits |
 | [Scientific and editorial review](docs/review-2026-10-20.md) | Corrections, coverage, and verification results |
+| [Maintenance and source review](docs/review-2026-10-21.md) | Current fixes, source checks, validation, and remaining limits |
 | [Data provenance](data/README.md) | Pinned files, licenses, and unresolved labels |
 | [Practical use](docs/practical-use.md) | Contracts, worked audit, and next improvements |
 | [Literature review](docs/literature-review.md) | Bounded evidence review and implementation rationale |

@@ -32,7 +32,7 @@ Review date: 20 October 2026; source rechecks completed 21 October 2026 UTC. No 
 
 <a id="sampleexplorer-2025"></a>
 
-- Chin WL, Lassmann T. (2025). SampleExplorer: using language models to discover relevant transcriptome data. *Bioinformatics*, 41(1), btae759. DOI: [10.1093/bioinformatics/btae759](https://doi.org/10.1093/bioinformatics/btae759). PMID: [39786428](https://pubmed.ncbi.nlm.nih.gov/39786428/). Online publication: 26 December 2024; 2025 issue year used here.
+- Chin WL, Lassmann T. (2025). SampleExplorer: using language models to discover relevant transcriptome data. *Bioinformatics*, 41(1), btae759. DOI: [10.1093/bioinformatics/btae759](https://doi.org/10.1093/bioinformatics/btae759). PMID: [39786428](https://pubmed.ncbi.nlm.nih.gov/39786428/). Online publication: 30 December 2024; 2025 issue year used here, as shown by the [publisher](https://academic.oup.com/bioinformatics/article/41/1/btae759/7934860).
 
 ## Data, software, and reference documentation
 

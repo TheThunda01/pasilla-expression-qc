@@ -208,7 +208,7 @@ The smallest intended condition/read-type cell contains {design['minimum_cell_si
 
 ## Descriptive PCA views
 
-The log2(CPM + 1) PCA assigns {ratios[0]:.1%} of variance to PC1 and {ratios[1]:.1%} to PC2. The log2(count + 1) sensitivity analysis assigns {raw_ratios[0]:.1%} and {raw_ratios[1]:.1%}, respectively. These percentages describe two different transformed data matrices; they are not an accuracy comparison.
+The $`\\log_2(\\mathrm{{CPM}}+1)`$ PCA assigns {ratios[0]:.1%} of variance to PC1 and {ratios[1]:.1%} to PC2. The $`\\log_2(\\text{{count}}+1)`$ sensitivity analysis assigns {raw_ratios[0]:.1%} and {raw_ratios[1]:.1%}, respectively. These percentages describe two different transformed data matrices; they are not an accuracy comparison.
 
 ![PCA after total-count normalization](pca_logcpm.png)
 

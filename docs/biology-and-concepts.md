@@ -28,7 +28,7 @@ That distinction is important because the original study concerned splicing regu
 
 Total-count scaling compares samples after accounting for their column sums. Median-ratio scaling estimates a relative sample factor from many genes, reducing the influence of a small number of large counts. Neither produces absolute RNA measurements. Both depend on what changed across samples; a widespread directional shift can make a supposedly stable reference inappropriate. [Anders and Huber (2010)](https://doi.org/10.1186/gb-2010-11-10-r106) and [Robinson and Oshlack (2010)](https://doi.org/10.1186/gb-2010-11-3-r25) motivate these issues.
 
-The project compares both methods at a shared count scale before applying `log2(normalized count + 1)`. The offset prevents taking the logarithm of zero but affects low-count relationships. Agreement between methods is useful to inspect, not proof that their assumptions hold.
+The project compares both methods at a shared count scale before applying $`\log_2(\text{normalized count}+1)`$. The offset prevents taking the logarithm of zero but affects low-count relationships. Agreement between methods is useful to inspect, not proof that their assumptions hold.
 
 ## Read type and condition in the sample design
 

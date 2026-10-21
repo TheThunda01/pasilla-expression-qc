@@ -21,8 +21,8 @@ The program verifies those files before running. It is intentionally specific to
 - Validate the count matrix and align the sample annotation by identifier rather than row order.
 - Compare count-table totals, zero fractions, and numbers of detected genes across samples.
 - Inspect counts for each condition/read-type combination and the rank (number of independent columns) of an additive design matrix that encodes the annotations.
-- View sample principal component analysis (PCA), a summary of major directions of variation, on `log2(CPM + 1)`. CPM means counts per million supplied assignments; color marks condition and shape marks read type.
-- Compare that view with PCA on log2(count + 1), using the same genes in both analyses.
+- View sample principal component analysis (PCA), a summary of major directions of variation, on $`\log_2(\mathrm{CPM}+1)`$. CPM means counts per million supplied assignments; color marks condition and shape marks read type.
+- Compare that view with PCA on $`\log_2(\text{count}+1)`$, using the same genes in both analyses.
 - Compare total-count and median-ratio normalization with the same reference depth and logarithm offset, then inspect the resulting sample distances and correlations.
 - Refit both normalized PCA views after leaving out each sample, and quantify how much the remaining sample geometry changes.
 - Inspect numeric outputs, input fingerprints, and the exact analysis settings.
@@ -72,7 +72,7 @@ The comparator reports exact schema/identity mismatches and finite numeric diffe
 
 The analysis begins with 14,599 genes and seven samples. It retains 8,148 genes with at least 10 counts in at least three samples for every PCA view. Count-table totals and zero fractions use all genes. These are declared exploratory settings, not universal thresholds for accepting an experiment.
 
-The normalization comparison estimates relative scale in two ways: from each sample's total counts, and from median log ratios across the 9,063 genes positive in every sample. Both use a reference depth of about 12.46 million counts before applying `log2(normalized count + 1)`. That common scale matters: changing the overall count scale while keeping a `+1` offset can itself change low-count relationships.
+The normalization comparison estimates relative scale in two ways: from each sample's total counts, and from median log ratios across the 9,063 genes positive in every sample. Both use a reference depth of about 12.46 million counts before applying $`\log_2(\text{normalized count}+1)`$. That common scale matters: changing the overall count scale while keeping a $`+1`$ offset can itself change low-count relationships.
 
 In the included run, median-ratio/total-count size-factor ratios range from **0.947 to 1.086**. The two-dimensional PCA configurations have a normalized Procrustes residual of **0.0548**: the remaining shape difference after aligning position, scale, rotation, and reflection. These numbers describe sensitivity; they do not identify a winning normalization method.
 

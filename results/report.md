@@ -15,7 +15,7 @@ The smallest intended condition/read-type cell contains 1 sample(s). Full rank m
 
 ## Descriptive PCA views
 
-The log2(CPM + 1) PCA assigns 40.4% of variance to PC1 and 32.4% to PC2. The log2(count + 1) sensitivity analysis assigns 79.6% and 10.6%, respectively. These percentages describe two different transformed data matrices; they are not an accuracy comparison.
+The $`\log_2(\mathrm{CPM}+1)`$ PCA assigns 40.4% of variance to PC1 and 32.4% to PC2. The $`\log_2(\text{count}+1)`$ sensitivity analysis assigns 79.6% and 10.6%, respectively. These percentages describe two different transformed data matrices; they are not an accuracy comparison.
 
 ![PCA after total-count normalization](pca_logcpm.png)
 

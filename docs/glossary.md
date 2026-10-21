@@ -31,9 +31,9 @@ These definitions describe how the terms are used in this project. The [methods]
 | Median-ratio factor | A relative scale estimate based on each gene's ratio to a geometric reference, combined across genes. This implementation takes the exponential of the median log ratio. |
 | TMM | Trimmed mean of M-values, a relative normalization method based on weighted averages of selected log expression ratios (M-values). It motivates the composition-bias discussion but is not implemented here. |
 | Dispersion and negative-binomial model | Dispersion describes variation beyond a simple mean-dependent count model. A negative-binomial model permits count variance greater than its mean. These are part of the cited inferential methods, not models fitted here. |
-| VST and rlog | Variance-stabilizing transformation and regularized logarithm are DESeq2 transformations designed for count-data visualization. This project's `log2(count + 1)` calculation does not reproduce them. |
+| VST and rlog | Variance-stabilizing transformation and regularized logarithm are DESeq2 transformations designed for count-data visualization. This project's $`\log_2(\text{count}+1)`$ calculation does not reproduce them. |
 | Geometric mean and logarithm | The geometric mean of positive values is the exponential of their mean natural logarithm. `log2` expresses values on a base-two logarithmic scale. |
-| Pseudocount | The added value in `log2(normalized count + 1)`, which permits zeros but influences low-count differences. |
+| Pseudocount | The added value in $`\log_2(\text{normalized count}+1)`$, which permits zeros but influences low-count differences. |
 | PCA and principal component (PC) | Principal component analysis summarizes directions of variation. PC1 and PC2 are the first two directions; their coordinates depend on the input transformation. |
 | Centering and standardization | Centering subtracts a mean. Standardization also divides by a standard deviation; this project's PCA centers genes but does not standardize them. |
 | Loading and variance explained | A loading describes a feature's contribution to a PC. Variance explained is the component's share of variation in the analyzed matrix, not biological explanatory power. |

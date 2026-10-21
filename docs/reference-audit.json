@@ -1,0 +1,378 @@
+{
+  "review_date": "2026-10-20",
+  "scope": "All substantive sources cited in authored documentation and adopted sources in the preserved provenance/search records. Repeated links to the same source are grouped; title-screened exclusions are search history, not adopted evidence.",
+  "limits": [
+    "Current source checks occurred on 2026-10-21 UTC for the 2026-10-20 local-date review.",
+    "Matching metadata does not establish claim support. Access levels record this pass only; prior full-text retrieval records are preserved without being claimed as repeated.",
+    "No external tool benchmark, exhaustive systematic review, or independent biological validation was performed."
+  ],
+  "references": [
+    {
+      "id": "brooks-2011",
+      "source_type": "peer-reviewed article",
+      "title": "Conservation of an RNA regulatory map between Drosophila and mammals.",
+      "authors": "Brooks AN et al.",
+      "year": 2011,
+      "url": "https://doi.org/10.1101/gr.108662.110",
+      "doi": "10.1101/gr.108662.110",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "corrected",
+      "supported_claims": [
+        "Source experiment studied Pasilla-dependent RNA processing and compared regulation with mammalian NOVA proteins."
+      ],
+      "limitations": [
+        "Primary full text could not be reopened in this review; PMC verification pages or publisher access errors limited current appraisal to PubMed metadata and abstract.",
+        "The documented article/package sample-allocation discrepancy remains unresolved; current abstract access cannot resolve it."
+      ],
+      "corrections": [
+        "Completed issue, page range, and PMID; retained 2011 issue year rather than 2010 online year."
+      ],
+      "journal": "Genome Research",
+      "volume_issue": "21(2)",
+      "pages_or_article": "193–202",
+      "pmid": "20921232",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/20921232/"
+      ]
+    },
+    {
+      "id": "love-2014",
+      "source_type": "peer-reviewed article",
+      "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.",
+      "authors": "Love MI, Huber W, Anders S.",
+      "year": 2014,
+      "url": "https://doi.org/10.1186/s13059-014-0550-8",
+      "doi": "10.1186/s13059-014-0550-8",
+      "checked_on": "2026-10-21",
+      "access_level": "full_text",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Count variability and normalization are distinct from full negative-binomial differential-expression modeling.",
+        "Specialized count transformations address mean–variance behavior."
+      ],
+      "limitations": [
+        "Publisher methods and relevant passages inspected; no DESeq2 execution or independent validation performed."
+      ],
+      "corrections": [],
+      "journal": "Genome Biology",
+      "volume_issue": "15(12)",
+      "pages_or_article": "550",
+      "pmid": "25516281",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/25516281/"
+      ]
+    },
+    {
+      "id": "anders-2010",
+      "source_type": "peer-reviewed article",
+      "title": "Differential expression analysis for sequence count data.",
+      "authors": "Anders S, Huber W.",
+      "year": 2010,
+      "url": "https://doi.org/10.1186/gb-2010-11-10-r106",
+      "doi": "10.1186/gb-2010-11-10-r106",
+      "checked_on": "2026-10-21",
+      "access_level": "full_text",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Geometric reference and median-ratio scaling motivate relative normalization.",
+        "Count variability requires an inferential model beyond descriptive PCA."
+      ],
+      "limitations": [
+        "The precise current log-median convention was additionally checked in pinned DESeq2 source; the full DESeq model is not implemented."
+      ],
+      "corrections": [],
+      "journal": "Genome Biology",
+      "volume_issue": "11(10)",
+      "pages_or_article": "R106",
+      "pmid": "20979621",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/20979621/"
+      ]
+    },
+    {
+      "id": "robinson-2010",
+      "source_type": "peer-reviewed article",
+      "title": "A scaling normalization method for differential expression analysis of RNA-seq data.",
+      "authors": "Robinson MD, Oshlack A.",
+      "year": 2010,
+      "url": "https://doi.org/10.1186/gb-2010-11-3-r25",
+      "doi": "10.1186/gb-2010-11-3-r25",
+      "checked_on": "2026-10-21",
+      "access_level": "full_text",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "RNA composition can make library totals a misleading relative scale."
+      ],
+      "limitations": [
+        "TMM is contextual evidence; this project does not implement it or compare its performance."
+      ],
+      "corrections": [],
+      "journal": "Genome Biology",
+      "volume_issue": "11(3)",
+      "pages_or_article": "R25",
+      "pmid": "20196867",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/20196867/"
+      ]
+    },
+    {
+      "id": "schonemann-1966",
+      "source_type": "peer-reviewed article",
+      "title": "A generalized solution of the orthogonal Procrustes problem.",
+      "authors": "Schönemann PH.",
+      "year": 1966,
+      "url": "https://doi.org/10.1007/BF02289451",
+      "doi": "10.1007/BF02289451",
+      "checked_on": "2026-10-21",
+      "access_level": "metadata_only",
+      "metadata_status": "unresolved",
+      "supported_claims": [
+        "Retained historical attribution for orthogonal Procrustes; no new source-content verification claimed."
+      ],
+      "limitations": [
+        "DOI and bibliographic metadata cross-checked against available search records, but the primary publisher page could not be retrieved.",
+        "The independently written SVD calculation was inspected and tested; that is not a substitute for primary-text access."
+      ],
+      "corrections": [],
+      "journal": "Psychometrika",
+      "volume_issue": "31(1)",
+      "pages_or_article": "1–10"
+    },
+    {
+      "id": "seeker-2022",
+      "source_type": "peer-reviewed article",
+      "title": "The seeker R package: simplified fetching and processing of transcriptome data.",
+      "authors": "Schoenbachler JL, Hughey JJ.",
+      "year": 2022,
+      "url": "https://doi.org/10.7717/peerj.14372",
+      "doi": "10.7717/peerj.14372",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "The software provides a standardized interface to transcriptome fetching and processing, with logging."
+      ],
+      "limitations": [
+        "Primary full text could not be reopened in this review; PMC verification pages or publisher access errors limited current appraisal to PubMed metadata and abstract.",
+        "Earlier full-body appraisal is retained as historical review history, not represented as repeated in this review."
+      ],
+      "corrections": [],
+      "journal": "PeerJ",
+      "volume_issue": "10",
+      "pages_or_article": "e14372",
+      "pmid": "36389425",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/36389425/"
+      ]
+    },
+    {
+      "id": "sampleexplorer-2025",
+      "source_type": "peer-reviewed article",
+      "title": "SampleExplorer: using language models to discover relevant transcriptome data.",
+      "authors": "Chin WL, Lassmann T.",
+      "year": 2025,
+      "url": "https://doi.org/10.1093/bioinformatics/btae759",
+      "doi": "10.1093/bioinformatics/btae759",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "corrected",
+      "supported_claims": [
+        "Language-model-based search can retrieve transcriptome samples from metadata."
+      ],
+      "limitations": [
+        "Primary full text could not be reopened in this review; PMC verification pages or publisher access errors limited current appraisal to PubMed metadata and abstract.",
+        "Retrieval relevance does not authenticate experimental sample labels."
+      ],
+      "corrections": [
+        "Specified 2025 issue year, with online publication on 26 December 2024 distinguished in the bibliography."
+      ],
+      "journal": "Bioinformatics",
+      "volume_issue": "41(1)",
+      "pages_or_article": "btae759",
+      "pmid": "39786428",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39786428/"
+      ]
+    },
+    {
+      "id": "pasilla-package",
+      "source_type": "official documentation",
+      "title": "pasilla: data package with per-exon and per-gene read counts",
+      "authors": "Huber W, Reyes A.",
+      "year": null,
+      "url": "https://bioconductor.org/packages/release/data/experiment/html/pasilla.html",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Package purpose, authorship, citation DOI, and current release version."
+      ],
+      "limitations": [
+        "The live release page is not the version used for bundled inputs."
+      ],
+      "corrections": [],
+      "version": "1.40.0",
+      "alternate_urls": [
+        "https://doi.org/10.18129/B9.bioc.pasilla"
+      ]
+    },
+    {
+      "id": "pasilla-source",
+      "source_type": "official documentation",
+      "title": "pasilla source snapshot: DESCRIPTION and bundled data",
+      "authors": "Huber W, Reyes A.",
+      "year": null,
+      "url": "https://github.com/bioconductor-source/pasilla/tree/3c91e8df8add3549129e46b7a7a078fda4e2755a",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Pinned DESCRIPTION gives version 1.41.0, source experiment attribution, and unqualified LGPL declaration."
+      ],
+      "limitations": [
+        "Source-mirror snapshot is distinct from the moving release page; no new license version is inferred from unqualified LGPL."
+      ],
+      "corrections": [],
+      "version": "1.41.0; commit 3c91e8df8add3549129e46b7a7a078fda4e2755a"
+    },
+    {
+      "id": "pasilla-vignette",
+      "source_type": "official documentation",
+      "title": "Data preprocessing and creation of the data objects pasillaGenes and pasillaExons",
+      "authors": "Reyes A.",
+      "year": 2026,
+      "url": "https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "The displayed sample table labels three treated and four untreated libraries, with single-read and paired-end data.",
+        "The package derives processed counts from the source RNA-seq experiment."
+      ],
+      "limitations": [
+        "A derived annotation is not independent evidence resolving the original study allocation discrepancy."
+      ],
+      "corrections": [],
+      "version": "pasilla 1.40.0; document dated 2026-05-05"
+    },
+    {
+      "id": "deseq2-docs",
+      "source_type": "official documentation",
+      "title": "Analyzing RNA-seq data with DESeq2",
+      "authors": "Love MI, Anders S, Huber W.",
+      "year": 2026,
+      "url": "https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Distinguishes exploratory transformations from inferential count modeling.",
+        "Perfect confounding or missing factor combinations can make the design matrix non-full-rank."
+      ],
+      "limitations": [
+        "Documentation is not a demonstration that this project ran DESeq2 or validated its biological conclusions."
+      ],
+      "corrections": [],
+      "version": "1.52.0; document dated 2026-04-28",
+      "alternate_urls": [
+        "https://bioconductor.org/packages/DESeq2",
+        "https://github.com/thelovelab/DESeq2"
+      ]
+    },
+    {
+      "id": "deseq2-source",
+      "source_type": "official documentation",
+      "title": "DESeq2 core.R: estimateSizeFactorsForMatrix",
+      "authors": "DESeq2 developers.",
+      "year": null,
+      "url": "https://github.com/thelovelab/DESeq2/blob/76c5f8523716804dbe0a9500b4b7e216c6af225c/R/core.R",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "The ratio estimator exponentiates a median of finite log ratios; reference genes with nonfinite geometric means are excluded."
+      ],
+      "limitations": [
+        "Inspected relevant function, not the complete codebase. The Python implementation separately centers factors and fixes reference depth."
+      ],
+      "corrections": [],
+      "version": "commit 76c5f8523716804dbe0a9500b4b7e216c6af225c"
+    },
+    {
+      "id": "seeker-source",
+      "source_type": "official documentation",
+      "title": "seeker README and DESCRIPTION",
+      "authors": "Hughey Lab; seeker contributors.",
+      "year": null,
+      "url": "https://github.com/hugheylab/seeker/tree/ec636b2d55ffa93265cfb3150df5d9295c35f07c",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Standard interface and detailed logging are declared; DESCRIPTION identifies version and dependencies."
+      ],
+      "limitations": [
+        "No execution or code copying; only the named files were inspected."
+      ],
+      "corrections": [],
+      "version": "1.1.6; commit ec636b2d55ffa93265cfb3150df5d9295c35f07c"
+    },
+    {
+      "id": "python-isclose",
+      "source_type": "official documentation",
+      "title": "math.isclose: relative and absolute tolerance comparison",
+      "authors": "Python Software Foundation.",
+      "year": null,
+      "url": "https://docs.python.org/3.12/library/math.html#math.isclose",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Defines the finite-number comparison formula used by the comparator."
+      ],
+      "limitations": [
+        "Does not justify any particular scientific tolerance."
+      ],
+      "corrections": [],
+      "version": "3.12.15"
+    },
+    {
+      "id": "python-json",
+      "source_type": "official documentation",
+      "title": "json: JSON encoder and decoder",
+      "authors": "Python Software Foundation.",
+      "year": null,
+      "url": "https://docs.python.org/3.12/library/json.html",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Default handling of nonfinite constants and duplicate object names can be changed using parsing hooks."
+      ],
+      "limitations": [
+        "JSON parsing alone is not validation of scientific data."
+      ],
+      "corrections": [],
+      "version": "3.12.15"
+    },
+    {
+      "id": "ncbi-ps",
+      "source_type": "official documentation",
+      "title": "ps: pasilla, Drosophila melanogaster (Gene ID 44258)",
+      "authors": "National Center for Biotechnology Information.",
+      "year": null,
+      "url": "https://www.ncbi.nlm.nih.gov/gene/44258",
+      "checked_on": "2026-10-21",
+      "access_level": "unavailable",
+      "metadata_status": "unresolved",
+      "supported_claims": [
+        "Retained gene-record link for background annotation; current content could not be rechecked."
+      ],
+      "limitations": [
+        "The primary page returned a browser-verification screen. The source experiment independently supports the general Pasilla RNA-regulation context."
+      ],
+      "corrections": []
+    }
+  ]
+}

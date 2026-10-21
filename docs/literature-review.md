@@ -1,4 +1,4 @@
-# Rapid literature and practice review
+# Literature and practice review
 
 ## Question and scope
 
@@ -8,11 +8,13 @@ What small operational check would make a descriptive public RNA-seq reanalysis 
 
 This same-day follow-up asks how to compare numerical reruns while keeping sample identities and method settings exact. It is an additional implementation scope, not a new surveillance date or a repeat of the broad literature review.
 
+The [glossary](glossary.md) defines technical terms used here. The [reference audit](reference-audit.json) covers the current verification pass; the records below preserve the earlier search history.
+
 ## Search record
 
 Search date: **2026-10-20**. The [machine-readable log](search-log.json) records exact PubMed queries, date filters, sort order, returned identifiers, and screening decisions. The initial recent query returned 37 records; only its first 10, ordered by publication date, were screened. A narrower metadata/provenance query returned six records, all screened. Those pages contain 14 distinct records. Two directly relevant software papers were retained, with an older source-study citation and official documentation added for context. No inference about the 27 unreturned broad-search records is made.
 
-A quoted-title lookup for the foundational paper returned zero; the known DOI was then resolved through the PubMed identifier service and its record retrieved. The seeker paper was read through its complete rights-eligible PMC body. SampleExplorer and the source experiment were appraised from citation/abstract metadata in this round; the original source discrepancy also remains documented in the existing data notes. Supplementary official documentation and repository files were inspected directly. No protected abstract is republished here.
+A quoted-title lookup for the foundational paper returned zero; the known DOI was then resolved through the PubMed identifier service and its record retrieved. The earlier search record reports reading the seeker paper through its complete rights-eligible PMC body. SampleExplorer and the source experiment were appraised from citation/abstract metadata in this round; the original source discrepancy also remains documented in the existing data notes. Supplementary official documentation and repository files were inspected directly. No protected abstract is republished here.
 
 ### Round 2 update — 2026-10-20
 
@@ -22,9 +24,9 @@ A narrow PubMed query for computational biology/bioinformatics, floating point, 
 
 | Source | Type and access | Relevant finding | Limit | Consequence here |
 | --- | --- | --- | --- | --- |
-| [Schoenbachler and Hughey, 2022, PMID 36389425](https://pubmed.ncbi.nlm.nih.gov/36389425/) | Primary software paper; complete PMC body read | seeker records parameters, session information, dependencies, and produces sample metadata with expression outputs. | Its end-to-end R workflow is not this Python QC script; recording provenance does not establish biological correctness. | Keep the existing analysis/environment record and add a transferable byte-level artifact snapshot. |
-| [Chin and Lassmann, PMID 39786428](https://pubmed.ncbi.nlm.nih.gov/39786428/) | Primary software paper; abstract-only appraisal; online 2024, volume 41 issue 1 | SampleExplorer uses transcriptome metadata to retrieve relevant samples. | Retrieval relevance is not verification of sample labels; the underlying model and benchmark were not re-evaluated. | Keep source labels visible and compare output annotations with the chosen source, without treating agreement as truth. |
-| [Brooks et al., 2011, PMID 20921232](https://pubmed.ncbi.nlm.nih.gov/20921232/) | Primary experimental source; abstract reviewed in this round | The original work concerns Pasilla-dependent splicing. | The available gene-count QC does not reproduce exon-level inference or resolve sample allocation by itself. | Retain descriptive scope and the unresolved article/package discrepancy. |
+| [Schoenbachler and Hughey (2022), PMID 36389425](https://pubmed.ncbi.nlm.nih.gov/36389425/) | Primary software paper; complete PMC body recorded as read in the earlier review | seeker records parameters, session information, dependencies, and produces sample metadata with expression outputs. | Its end-to-end R workflow is not this Python QC script; recording provenance does not establish biological correctness. | Keep the existing analysis/environment record and add a transferable byte-level artifact snapshot. |
+| [Chin and Lassmann (2025), PMID 39786428](https://pubmed.ncbi.nlm.nih.gov/39786428/) | Primary software paper; abstract-only appraisal; online 26 December 2024; 2025 issue, volume 41(1) | SampleExplorer uses transcriptome metadata to retrieve relevant samples. | Retrieval relevance is not verification of sample labels; the underlying model and benchmark were not re-evaluated. | Keep source labels visible and compare output annotations with the chosen source, without treating agreement as truth. |
+| [Brooks et al. (2011), PMID 20921232](https://pubmed.ncbi.nlm.nih.gov/20921232/) | Primary experimental source; abstract reviewed in this round | The original work concerns Pasilla-dependent splicing. | The available gene-count QC does not reproduce exon-level inference or resolve sample allocation by itself. | Retain descriptive scope and the unresolved article/package discrepancy. |
 | [pasilla data-creation vignette, version 1.40.0, dated 5 May 2026](https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html) | Official source documentation; sample table inspected | Documents the derived package sample annotations and count-generation context. | A derived package is not independent evidence that all original labels are correct. | Audit sample names/order against the exact pinned annotation, not a silently edited table. |
 | [seeker source, commit ec636b2d55ffa93265cfb3150df5d9295c35f07c](https://github.com/hugheylab/seeker/tree/ec636b2d55ffa93265cfb3150df5d9295c35f07c) | Official repository; README and DESCRIPTION inspected; version 1.1.6; MIT | Declares a standard interface and detailed logging for transcriptome processing. | No seeker execution or code-equivalence test was performed. | Adopt the general practice of explicit records; no code was copied and no new dependency was added. |
 
@@ -49,13 +51,15 @@ Added `compare_results.py`, eleven targeted tests, a numerical comparison exampl
 
 ## Remaining work
 
-The next useful additions are a tolerance-based numerical comparator and more matrix-level consistency tests. Definitive source-label reconciliation remains separate evidence-gathering work. The audit should not be expanded into a claim of differential-expression readiness while that issue remains unresolved.
+The numerical comparator proposed in round 1 is implemented. More matrix-level consistency tests and definitive source-label reconciliation remain separate work. The audit should not be expanded into a claim of differential-expression readiness while that issue remains unresolved.
 
 ### Round 2 update — 2026-10-20
 
 The numerical comparator proposed in round 1 is now implemented. Matrix symmetry/diagonal checks, a second operating-system comparison, and definitive source-label reconciliation remain open; current acceptance criteria are in [practical use](practical-use.md).
 
 ## Limits of this review
+
+The current editorial pass rechecked publication metadata and relevant accessible sources, including three normalization papers through their publisher full text. Brooks et al., seeker, and SampleExplorer were rechecked at abstract level; the Procrustes paper and NCBI gene record have explicit access limits. Earlier full-text access is not claimed as repeated. See [References](references.md) and the [dated review](review-2026-10-20.md).
 
 One reviewer screened bounded PubMed pages and a small set of official resources. The search was not registered, duplicated, risk-of-bias scored, or exhaustive across databases. The initial query was intentionally narrowed after mostly off-topic returns. Abstract-only access limited appraisal of two publications; repository inspection was limited to the named files. This review supports a modest workflow improvement, not a comparative claim that this tool outperforms existing RNA-seq systems.
 

@@ -2,15 +2,15 @@
 
 ## Background and rationale
 
-An RNA-sequencing (RNA-seq) count table can look tidy while still leaving important questions unanswered. Do the sample labels match? How different are the library totals? Does the picture change after normalization, or when one sample is omitted? This project explores those questions before attempting formal biological inference.
+This project checks an RNA-sequencing (RNA-seq) count table before formal biological inference. It asks whether sample labels match, how library totals differ, and whether normalization or omitting one sample changes the summaries. A tidy table alone cannot answer those questions.
 
 The example uses published Drosophila data from the [pasilla Bioconductor package](https://doi.org/10.18129/B9.bioc.pasilla), derived from [Brooks et al. (2011)](https://doi.org/10.1101/gr.108662.110). The supplied table contains 14,599 genes and seven samples, with treated and untreated conditions and two sequencing read types. Reusing a documented public example makes the analysis reproducible and lets the project focus on its methodological choices.
 
 ## What it does
 
-The workflow checks input fingerprints, validates integer counts, aligns metadata by identifier, and summarizes count totals and zero fractions. It then compares sample principal component analysis (PCA), distances, and correlations under total-count and median-ratio normalization. The comparison uses a common reference depth and logarithm offset so an arbitrary change of scale does not obscure the normalization question.
+The workflow checks input fingerprints, validates integer counts, aligns metadata by identifier, and summarizes count totals and zero fractions. It then compares principal component analysis (PCA), distances, and correlations between samples under total-count and median-ratio normalization. A common reference depth and logarithm offset keep scale changes from obscuring the normalization comparison.
 
-A second analysis omits each sample in turn and refits normalization and PCA. It measures changes in the remaining samples' two-dimensional geometry after aligning translation, scale, rotation, and reflection. The original PCA gene set stays fixed, so this experiment examines sample inclusion rather than repeating feature selection.
+A second analysis measures how much each sample influences the PCA plot. It omits each sample in turn, refits normalization and PCA, and compares the remaining samples' two-dimensional geometry after aligning translation, scale, rotation, and reflection. Keeping the original PCA gene set fixed isolates sensitivity to sample inclusion; it does not assess sensitivity to repeating feature selection.
 
 ## Why it matters
 

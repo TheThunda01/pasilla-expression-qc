@@ -2,13 +2,15 @@
 
 ## What biological question led to these data?
 
-Pasilla is an RNA-binding protein encoded by the Drosophila melanogaster gene `ps`. RNA-binding proteins can influence how an RNA molecule is processed after it is transcribed. [Brooks et al. (2011)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3032923/) investigated Pasilla-related splicing regulation in fly-derived S2 cells and compared aspects of that regulation with mammalian NOVA proteins. These are cultured model-organism cells, not human samples or whole animals observed in a clinical study. The [NCBI gene record](https://www.ncbi.nlm.nih.gov/gene/44258) is retained as a background annotation link; it could not be reopened during this review. The general RNA-regulation context is supported by the source study, and an annotation is not a new result generated here.
+Pasilla is an RNA-binding protein encoded by the Drosophila melanogaster gene `ps`. RNA-binding proteins can influence how cells process RNA after transcription. [Brooks et al. (2011)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3032923/) investigated Pasilla-related splicing regulation in fly-derived S2 cells and compared aspects of that regulation with mammalian NOVA proteins. These are cultured model-organism cells, not human samples or whole animals in a clinical study.
+
+The source study supports this RNA-regulation background. The [NCBI gene record](https://www.ncbi.nlm.nih.gov/gene/44258) remains a background annotation link, but it could not be reopened during the source review. Neither the annotation nor this project adds a new biological finding.
 
 This project starts much later in the evidence chain: with a public teaching count table and its annotation. It asks whether the inputs are coherent and how analysis choices affect sample summaries. It does not repeat the experiment or reconstruct the original biological conclusions.
 
 ## From transcription to a table of counts
 
-Transcription produces RNA from a DNA template. The amount of an RNA present at a particular time reflects both production and subsequent processing or removal. A measured RNA abundance therefore is not a direct measurement of transcription rate, and RNA abundance need not track protein abundance one-for-one.
+RNA abundance reflects both production and loss. Transcription produces RNA from a DNA template; subsequent processing and removal also affect how much RNA is present. Measuring RNA abundance therefore does not directly measure transcription rate, and RNA abundance need not track protein abundance one-for-one.
 
 RNA sequencing (RNA-seq) samples material from a prepared library. After sequence reads are mapped and assigned to features, a count table records how many assignments were associated with each gene in each sample. Those values depend on both the biological material and the measurement workflow. A larger gene count can reflect more captured RNA, greater sequencing depth, or other technical differences. It should not automatically be read as an absolute number of molecules per cell. The [DESeq2 methods paper](https://doi.org/10.1186/s13059-014-0550-8) explains why count properties and sample variability matter for statistical analysis.
 
@@ -16,13 +18,15 @@ Here, each row is a gene identifier and each column is a library. Summing a colu
 
 ## What does knockdown mean?
 
-The source experiment used RNA interference (RNAi), RNA-mediated reduction of a target's expression, to reduce Pasilla expression. A knockdown reduces the abundance or activity of a target; it is not equivalent to deleting the gene, and a response after perturbation does not by itself identify every direct molecular target. This repository contains no experimental knockdown procedure and does not estimate knockdown efficiency. It uses the public `treated` and `untreated` labels as supplied. Those labels describe the derived dataset used here, not an independently verified reconstruction of every experimental detail in the paper.
+The source experiment used RNA interference (RNAi) to reduce Pasilla expression. RNAi uses RNA to reduce a target's expression. A knockdown reduces a target's abundance or activity; it is not equivalent to deleting the gene. A response to that perturbation does not by itself identify every direct molecular target.
+
+This repository contains no experimental knockdown procedure and does not estimate knockdown efficiency. It retains the public `treated` and `untreated` labels. Those labels describe the derived dataset; they do not independently verify every experimental detail in the paper.
 
 ## Gene abundance and splicing are different questions
 
 Many initial RNA transcripts contain exons separated by introns. Splicing removes introns and joins exons; alternative splicing can produce different transcript forms from the same gene. Total abundance and the relative use of an exon can change independently.
 
-That distinction is important because the original study concerned splicing regulation, while this project's main input aggregates assignments at **gene level**. A gene-total table cannot establish which exon or splice junction changed, nor demonstrate an isoform switch. The [pasilla data-creation vignette](https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html) describes the broader derived package, which includes exon-oriented material. This workflow uses only the stated gene-count table and annotation; it performs no exon-usage or splice-junction analysis.
+This project's **gene-level** counts cannot answer the original study's splicing question. A gene-total table cannot establish which exon or splice junction changed or demonstrate an isoform switch. The [pasilla data-creation vignette](https://bioconductor.org/packages/release/data/experiment/vignettes/pasilla/inst/doc/create_objects.html) describes the broader derived package, which includes exon-oriented material. This workflow uses only the stated gene-count table and annotation; it performs no exon-usage or splice-junction analysis.
 
 ## Why normalization has assumptions
 

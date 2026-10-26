@@ -1,20 +1,18 @@
 # Pasilla expression QC
 
-**[Start here: project background, purpose, and key themes](docs/project-context.md).**
+This project checks sample labels, count totals, and sensitivity to transformation choices in public *Drosophila melanogaster* (fruit fly) RNA-sequencing (RNA-seq) data. RNA-seq samples RNA-derived material; these gene counts record assignments to genes, not absolute numbers of molecules.
 
-For a deeper explanation, read **[the biology and analysis concepts](docs/biology-and-concepts.md)**.
-
-Before interpreting an expression experiment, I want to know whether the sample labels line up, how much the count totals vary, and whether a simple transformation changes the picture. This small project makes those checks visible using public *Drosophila melanogaster* (fruit fly) RNA-sequencing (RNA-seq) counts. RNA-seq samples RNA-derived material; these gene counts are assignment totals, not absolute molecule measurements.
+**[Start here: project background, purpose, and key themes](docs/project-context.md).** For more detail, read **[the biology and analysis concepts](docs/biology-and-concepts.md)**.
 
 **Status: working educational analysis, version 0.3.0.** The inputs are real public data; this is a descriptive reanalysis, not a new biological finding or a reproduction of the original splicing study. It runs locally without downloading data after the Python dependencies are installed.
 
 ## Why this project
 
-A useful expression analysis starts with knowing which samples and transformations are being compared. This project makes those choices inspectable before any inferential model is considered.
+Before fitting an expression model, check which samples and transformations you are comparing. This project shows how those choices affect the sample summaries.
 
 The `pasilla` Bioconductor package provides counts derived from the experiment described by [Brooks et al. (2011)](docs/references.md#brooks-2011). Its annotation has three treated and four untreated samples, including single-read and paired-end libraries. The count table and original annotation are bundled unchanged, together with the upstream package description and a manifest of SHA-256 fingerprints (identifiers calculated from exact file bytes). [Provenance and license details](data/README.md) explain the pinned source snapshot.
 
-The program verifies those files before running. It is intentionally specific to this example: arbitrary datasets need a separate manifest, an appropriate metadata mapping, and a scientific review of the analysis choices.
+The program verifies those files before analysis. It is designed for this example. Other datasets need a separate manifest, an appropriate metadata mapping, and a scientific review of the analysis choices.
 
 ## What it does
 
@@ -27,7 +25,7 @@ The program verifies those files before running. It is intentionally specific to
 - Refit both normalized PCA views after leaving out each sample, and quantify how much the remaining sample geometry changes.
 - Inspect numeric outputs, input fingerprints, and the exact analysis settings.
 
-The project demonstrates Python data validation, reproducible scientific scripting, independent implementation of normalization formulas, matrix transformations, PCA using singular value decomposition (SVD), geometric sensitivity analysis, clear plots, provenance checks, and tests for input failures. It does not run DESeq2, estimate gene-level differential expression, or test alternative splicing. [Methods and limitations](docs/methods.md) give the formulas and explain the boundaries. [Source notes](docs/source-notes.md) distinguish the original literature, current software documentation, and this implementation.
+The Python scripts independently implement normalization formulas and matrix transformations, compute PCA using singular value decomposition (SVD), and plot changes in sample geometry. Input checks and tests help readers reproduce the calculations and trace failures. The analysis does not run DESeq2, estimate gene-level differential expression, or test alternative splicing. [Methods and limitations](docs/methods.md) give the formulas; [source notes](docs/source-notes.md) distinguish the original literature, current software documentation, and this implementation.
 
 The separate `audit_results.py` command checks completeness, source fingerprints, sample labels, and byte-level consistency of a result package. It does not rerun the statistics or resolve source-label uncertainty.
 
@@ -45,7 +43,7 @@ python -m unittest discover -s tests -v
 python analysis.py --out my-results
 ```
 
-The last command writes `my-results/`, preserving the included example outputs in `results/`. Output folders should be separate from the input folder. The included GitHub Actions workflow specifies continuous integration (CI) checks. Its configuration and the status of any particular hosted run are separate records.
+The last command writes `my-results/`, preserving the included example outputs in `results/`. Keep output folders separate from the input folder. The GitHub Actions workflow defines continuous integration (CI) checks; consult a hosted run to see whether those checks passed.
 
 Check the committed result package with:
 
@@ -80,11 +78,13 @@ In the included run, median-ratio/total-count size-factor ratios range from **0.
 
 Omitting `treated1` produces the largest change in the two-dimensional configuration under both normalizations (residuals **0.2330** and **0.2187**, respectively). That is a reason to understand its influence, not a reason to discard it. With only seven samples, this exercise cannot distinguish experimental heterogeneity from a sample-quality problem. See the [full report](results/report.md) for every omission and the [methods](docs/methods.md) for what is held fixed.
 
-The PCA pictures are summaries of the chosen transformed matrices. A cluster is not a significance test, and separation does not tell us whether condition, library preparation, or another factor caused it. Read type differs among these samples, so the plots display that annotation rather than concealing it. No sample is removed because of where it falls on a plot.
+PCA summarizes the chosen transformed matrices. Clusters and separation do not establish statistical significance or identify whether condition, library preparation, or another factor caused a pattern. The plots label read type because it differs among samples. The analysis retains every sample regardless of its position on a plot.
 
 ## Practical use and limitations
 
-Use the [practical-use guide](docs/practical-use.md) to create and verify a snapshot for a new result directory. A byte match is distinct from numerical reproducibility and biological validity. The [source follow-up](docs/review-2026-10-21.md#source-reconciliation) found archive metadata supporting the package's allocation, while the article text differs; exact mapping to the derived count columns remains unaudited. This project retains the package labels. No differential-expression or splicing inference is added.
+Use the [practical-use guide](docs/practical-use.md) to create and verify a snapshot for a new result directory. Matching bytes alone does not establish numerical reproducibility or biological validity.
+
+Sample-label provenance remains unresolved. The [source follow-up](docs/review-2026-10-21.md#source-reconciliation) found archive metadata supporting the package's allocation, but the article text differs and the exact mapping to the derived count columns remains unaudited. This project retains the package labels and makes no differential-expression or splicing inference.
 
 ### Numerical comparison
 

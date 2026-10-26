@@ -5,3 +5,8 @@ __pycache__/
 .DS_Store
 results_clean/
 tmp/
+
+# Local outputs from the README and practical-use examples
+/my-results/
+/my-comparison.json
+/my-audit.json

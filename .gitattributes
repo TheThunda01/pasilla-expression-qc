@@ -5,3 +5,6 @@ data/UPSTREAM_DESCRIPTION -text
 # Artifact manifests hash exact bytes, including JSON/Markdown line endings.
 results/** -text
 audits/*.json -text
+
+# Preserve the embedded Plotly distribution as generated.
+docs/figures/sample-explorer/sample-explorer.html -whitespace linguist-generated

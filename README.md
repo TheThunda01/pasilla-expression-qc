@@ -80,6 +80,12 @@ Omitting `treated1` produces the largest change in the two-dimensional configura
 
 PCA summarizes the chosen transformed matrices. Clusters and separation do not establish statistical significance or identify whether condition, library preparation, or another factor caused a pattern. The plots label read type because it differs among samples. The analysis retains every sample regardless of its position on a plot.
 
+### Follow a sample across the summaries
+
+![Sample coordinates, normalization factors and omission sensitivity](docs/figures/sample-explorer/sample-explorer.png)
+
+The [sample explorer](docs/sample-explorer.md) links those summaries through hover details and consistent condition/read-type labels. It reads the saved tables, checks identity alignment and complete omissions, and leaves the audited result package unchanged. `treated1` remains the only treated single-read sample; its influence does not justify automatic removal or resolve the source-label discrepancy.
+
 ## Practical use and limitations
 
 Use the [practical-use guide](docs/practical-use.md) to create and verify a snapshot for a new result directory. Matching bytes alone does not establish numerical reproducibility or biological validity.

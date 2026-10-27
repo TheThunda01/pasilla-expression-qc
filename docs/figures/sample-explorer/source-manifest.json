@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "plotly_version": "7.1.0",
+  "source_sha256_lf_normalized": {
+    "pca_total_count.csv": "f825d3880219a08d485a36436dd319151011ce9d801cb477abb105ab389bb3ce",
+    "pca_median_ratio.csv": "7ad9afb85e632a4755749bc80efa76ff6c94684decac5ac52deb3554879d7238",
+    "normalization_factors.csv": "8a14fb07ae6c7a959db9c1facbc53e2adc8770a0e820b3c5b31639041e758d6b",
+    "leave_one_out_stability.csv": "073443d93bb0e4a7470f40364d36d66dea0857aecd04f87bb8d0f42446faca45"
+  },
+  "samples": 7,
+  "omission_rows": 14,
+  "scope": "These views read the saved numerical tables and retain all seven samples. Package condition/read-type labels remain unresolved against the original source history. Each PCA panel uses its saved coordinate system; equal displayed ranges do not make axes biological measurements or independently align the two fits. Omission residuals measure geometry changes after alignment, with 8,148 genes and the reference depth held fixed. treated1 is the only treated single-read sample; influence is not a rejection criterion or treatment-effect test. Hover on samples to connect their labels, scaling factor ratio and omission residual. No model was refit."
+}

@@ -8,6 +8,8 @@ This project checks sample labels, count totals, and sensitivity to transformati
 
 ## Why this project
 
+In [From biological measurements to better experiments](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md), this study asks how much of a visible pattern depends on sample labels and analysis choices. It supports the portfolio’s modeling questions by making those choices inspectable before interpreting a result.
+
 Before fitting an expression model, check which samples and transformations you are comparing. This project shows how those choices affect the sample summaries.
 
 The `pasilla` Bioconductor package provides counts derived from the experiment described by [Brooks et al. (2011)](docs/references.md#brooks-2011). Its annotation has three treated and four untreated samples, including single-read and paired-end libraries. The count table and original annotation are bundled unchanged, together with the upstream package description and a manifest of SHA-256 fingerprints (identifiers calculated from exact file bytes). [Provenance and license details](data/README.md) explain the pinned source snapshot.

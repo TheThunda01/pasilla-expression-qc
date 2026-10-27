@@ -1,5 +1,9 @@
 # Pasilla expression QC: the project in context
 
+## Where this fits
+
+The [Sequence Quality Toolkit](https://github.com/TheThunda01/sequence-quality-toolkit) introduces checks on sequence records; Pasilla examines a separate dataset of gene counts. Together they offer two entry points into measurement quality. Continue to [enzyme kinetics](https://github.com/TheThunda01/enzyme-kinetics-workbench) for a different question: how strongly do measurements constrain a fitted model’s parameters? Return to the [portfolio guide](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md).
+
 ## Background and rationale
 
 This project checks an RNA-sequencing (RNA-seq) count table before formal biological inference. It asks whether sample labels match, how library totals differ, and whether normalization or omitting one sample changes the summaries. A tidy table alone cannot answer those questions.

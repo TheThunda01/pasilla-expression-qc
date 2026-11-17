@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import tempfile
+import shutil
 import unittest
 
 import numpy as np
@@ -65,10 +66,25 @@ class InputChecks(unittest.TestCase):
         self.assertEqual(frame.shape, (14599, 7))
 
     def test_modified_data_is_rejected(self):
-        (self.root / "x").write_text("changed")
-        (self.root / "manifest.json").write_text(json.dumps({"files": [{"path": "x", "bytes": 0, "sha256": "abc"}]}))
-        with self.assertRaises(ValueError):
-            analysis.verify_manifest(self.root)
+        data = self.root / "data"
+        shutil.copytree(analysis.ROOT / "data", data)
+        (data / analysis.COUNTS).write_text("changed")
+        with self.assertRaisesRegex(ValueError, "fingerprint mismatch"):
+            analysis.verify_manifest(data)
+
+    def test_missing_and_duplicate_inputs_fail_before_analysis(self):
+        manifest = json.loads((analysis.ROOT / "data/manifest.json").read_text())
+        files = manifest["files"]
+        out = self.root / "results"
+        for name in (analysis.COUNTS, analysis.ANNOTATIONS):
+            without = [item for item in files if item["path"] != name]
+            duplicate = next(item for item in files if item["path"] == name)
+            for entries, error in ((without, "missing required"), (files + [duplicate], "duplicate")):
+                with self.subTest(name=name, error=error):
+                    (self.root / "manifest.json").write_text(json.dumps({**manifest, "files": entries}))
+                    with self.assertRaisesRegex(ValueError, error):
+                        analysis.run(self.root, out)
+                    self.assertFalse(out.exists())
 
 
 class PCAChecks(unittest.TestCase):

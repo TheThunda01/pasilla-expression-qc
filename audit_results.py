@@ -5,10 +5,11 @@ This checks files and sample labels, not biological validity or numeric reproduc
 from __future__ import annotations
 import argparse
 import csv
-import hashlib
 import json
 from pathlib import Path
 import sys
+
+from provenance import ANNOTATIONS, COUNTS, fingerprint, verify_manifest
 
 FILES = (
     'additive_design_matrix.csv', 'condition_read_type_counts.csv',
@@ -24,20 +25,6 @@ SAMPLE_TABLES = ('sample_qc.csv', 'pca_logcounts.csv', 'pca_logcpm.csv',
                  'pca_median_ratio.csv', 'pca_total_count.csv')
 
 
-def fingerprint(path):
-    path = Path(path)
-    if not path.is_file() or path.is_symlink():
-        raise ValueError(f'Expected a regular non-symlink file: {path.name}')
-    digest = hashlib.sha256()
-    size = 0
-    with path.open('rb') as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b''):
-            digest.update(block); size += len(block)
-    if size == 0:
-        raise ValueError(f'Empty file: {path.name}')
-    return {'path': path.name, 'bytes': size, 'sha256': digest.hexdigest()}
-
-
 def table(path):
     with Path(path).open(newline='', encoding='utf-8') as stream:
         reader = csv.DictReader(stream)
@@ -51,24 +38,17 @@ def table(path):
 
 def snapshot(results, data):
     results, data = Path(results), Path(data)
-    source = json.loads((data/'manifest.json').read_text())
-    verified_inputs = {}
-    for item in source['files']:
-        if Path(item['path']).name != item['path']:
-            raise ValueError('Source manifest paths must be plain filenames')
-        actual = fingerprint(data/item['path'])
-        if actual['bytes'] != item['bytes'] or actual['sha256'] != item['sha256']:
-            raise ValueError(f"Input fingerprint mismatch: {item['path']}")
-        verified_inputs[item['path']] = actual['sha256']
+    source = verify_manifest(data)
+    verified_inputs = {item['path']: item['sha256'] for item in source['files']}
     summary = json.loads((results/'summary.json').read_text())
     if summary['input_sha256'] != verified_inputs or summary['upstream_commit'] != source['upstream_commit']:
         raise ValueError('Result summary does not match verified input provenance')
-    with (data/'pasilla_gene_counts.tsv').open(newline='') as stream:
+    with (data/COUNTS).open(newline='') as stream:
         header = next(csv.reader(stream, delimiter='\t'))
     samples = header[1:]
     if not samples or len(samples) != len(set(samples)) or summary['samples'] != len(samples):
         raise ValueError('Count header and result sample count disagree')
-    annotations = table(data/'pasilla_sample_annotation.csv')
+    annotations = table(data/ANNOTATIONS)
     annotation = {r['file'][:-2]: r for r in annotations if r['file'].endswith('fb')}
     if len(annotation) != len(annotations) or set(annotation) != set(samples):
         raise ValueError('Source annotation mapping is incomplete or duplicated')

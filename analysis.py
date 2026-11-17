@@ -6,7 +6,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import importlib.metadata
 import json
 from pathlib import Path
@@ -21,21 +20,11 @@ import pandas as pd
 
 from sensitivity import principal_components, run_sensitivity
 from design import inspect_design
+from provenance import ANNOTATIONS, COUNTS, verify_manifest
 
 ROOT = Path(__file__).resolve().parent
 MIN_COUNT = 10
 MIN_SAMPLES = 3
-
-
-def verify_manifest(data_dir: Path) -> dict:
-    """Fail before analysis if any bundled upstream file has changed."""
-    manifest = json.loads((data_dir / "manifest.json").read_text())
-    for record in manifest["files"]:
-        path = data_dir / record["path"]
-        raw = path.read_bytes()
-        if len(raw) != record["bytes"] or hashlib.sha256(raw).hexdigest() != record["sha256"]:
-            raise ValueError(f"Provenance check failed for {record['path']}")
-    return manifest
 
 
 def load_counts(path: Path) -> pd.DataFrame:
@@ -130,8 +119,8 @@ def make_pca_plot(scores: np.ndarray, ratios: np.ndarray, metadata: pd.DataFrame
 
 def run(data_dir: Path, out: Path) -> dict:
     manifest = verify_manifest(data_dir)
-    counts = load_counts(data_dir / "pasilla_gene_counts.tsv")
-    metadata = load_metadata(data_dir / "pasilla_sample_annotation.csv", list(counts.columns))
+    counts = load_counts(data_dir / COUNTS)
+    metadata = load_metadata(data_dir / ANNOTATIONS, list(counts.columns))
     totals = counts.to_numpy(dtype=float).sum(axis=0)
     keep = (counts >= MIN_COUNT).sum(axis=1) >= MIN_SAMPLES
     retained = counts.loc[keep]

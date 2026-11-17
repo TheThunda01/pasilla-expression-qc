@@ -1,20 +1,14 @@
 # Pasilla expression QC
 
-This project checks sample labels, count totals, and sensitivity to transformation choices in public *Drosophila melanogaster* (fruit fly) RNA-sequencing (RNA-seq) data. RNA-seq samples RNA-derived material; these gene counts record assignments to genes, not absolute numbers of molecules.
+Seven fruit-fly RNA-seq libraries let us ask how much a sample plot depends on normalization and which samples drive its shape. In this example, omitting the only treated single-read sample shifts the plot most under both normalization methods.
 
-**[Start here: project background, purpose, and key themes](docs/project-context.md).** For more detail, read **[the biology and analysis concepts](docs/biology-and-concepts.md)**.
+![Removing treated1 produces the largest change under both normalization methods](results/leave_one_out_stability.png)
 
-**Status: working educational analysis, version 0.3.0.** The inputs are real public data; this is a descriptive reanalysis, not a new biological finding or a reproduction of the original splicing study. It runs locally without downloading data after the Python dependencies are installed.
+[Run the analysis](#quick-start) · [Explore individual samples](docs/sample-explorer.md) · [Read the methods](docs/methods.md) · [Portfolio guide](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md)
 
 ## Why this project
 
-In [From biological measurements to better experiments](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md), this study asks how much of a visible pattern depends on sample labels and analysis choices. It supports the portfolio’s modeling questions by making those choices inspectable before interpreting a result.
-
-Before fitting an expression model, check which samples and transformations you are comparing. This project shows how those choices affect the sample summaries.
-
-The `pasilla` Bioconductor package provides counts derived from the experiment described by [Brooks et al. (2011)](docs/references.md#brooks-2011). Its annotation has three treated and four untreated samples, including single-read and paired-end libraries. The count table and original annotation are bundled unchanged, together with the upstream package description and a manifest of SHA-256 fingerprints (identifiers calculated from exact file bytes). [Provenance and license details](data/README.md) explain the pinned source snapshot.
-
-The program verifies those files before analysis. It is designed for this example. Other datasets need a separate manifest, an appropriate metadata mapping, and a scientific review of the analysis choices.
+The Bioconductor `pasilla` package supplies gene counts for three treated and four untreated samples, with single-read and paired-end libraries. Each count records assignments to a gene. The repository includes the published count matrix, annotation, and upstream package description. Both the analysis and the result audit require a single manifest entry for each analysis input and verify the listed file sizes and SHA-256 hashes. [Data provenance and licenses](data/README.md)
 
 ## What it does
 
@@ -75,8 +69,6 @@ The analysis begins with 14,599 genes and seven samples. It retains 8,148 genes 
 The normalization comparison estimates relative scale in two ways: from each sample's total counts, and from median log ratios across the 9,063 genes positive in every sample. Both use a reference depth of about 12.46 million counts before applying $`\log_2(\text{normalized count}+1)`$. That common scale matters: changing the overall count scale while keeping a $`+1`$ offset can itself change low-count relationships.
 
 In the included run, median-ratio/total-count size-factor ratios range from **0.947 to 1.086**. The two-dimensional PCA configurations have a normalized Procrustes residual of **0.0548**: the remaining shape difference after aligning position, scale, rotation, and reflection. These numbers describe sensitivity; they do not identify a winning normalization method.
-
-![Leave-one-sample-out PCA sensitivity](results/leave_one_out_stability.png)
 
 Omitting `treated1` produces the largest change in the two-dimensional configuration under both normalizations (residuals **0.2330** and **0.2187**, respectively). That is a reason to understand its influence, not a reason to discard it. With only seven samples, this exercise cannot distinguish experimental heterogeneity from a sample-quality problem. See the [full report](results/report.md) for every omission and the [methods](docs/methods.md) for what is held fixed.
 

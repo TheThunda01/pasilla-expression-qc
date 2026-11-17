@@ -10,6 +10,10 @@ The PCA panels use equal coordinate units and shared displayed ranges. They reta
 
 `treated1` is the only treated single-read sample, so its omission changes sample composition as well as geometry. A large residual is not a sample-rejection criterion or a treatment-effect test. The original package labels are preserved, including their [unresolved source provenance](review-2026-10-21.md#source-reconciliation). This view does not resolve that discrepancy.
 
+### Compare omissions at a glance
+
+The [ranked omission chart](figures/omission-comparison.svg) draws a line between the two residuals for each library. The rows are sorted by their larger residual. Shape and color identify the normalization method, and the largest residual for each method is labeled. Run `python scripts/plot_omission_comparison.py` with the core analysis dependencies to regenerate the SVG from the four checked result tables. Its metadata records the source residual table's fingerprint.
+
 ## Input and output contract
 
 The [builder](../scripts/build_sample_explorer.py) reads four saved tables:

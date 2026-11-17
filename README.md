@@ -2,7 +2,9 @@
 
 Seven fruit-fly RNA-seq libraries let us ask how much a sample plot depends on normalization and which samples drive its shape. In this example, omitting the only treated single-read sample shifts the plot most under both normalization methods.
 
-![Removing treated1 produces the largest change under both normalization methods](results/leave_one_out_stability.png)
+![Ranked comparison of omission residuals. Removing treated1 gives 0.233 for total-count normalization and 0.219 for median-ratio normalization.](docs/figures/omission-comparison.svg)
+
+Each row compares the two normalization methods after the same library is omitted. Points farther right mark a larger change in the positions of the six remaining samples. [Inspect the values](results/leave_one_out_stability.csv)
 
 [Run the analysis](#quick-start) · [Explore individual samples](docs/sample-explorer.md) · [Read the methods](docs/methods.md) · [Portfolio guide](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md)
 
